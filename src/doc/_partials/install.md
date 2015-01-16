@@ -25,11 +25,11 @@ $ npm install angular-morris-chart --save
 <script src="../node_modules/angular-morris-chart/src/angular-morris-chart.min.js"></script>
 ```
 
-- add `stpa.chart` as a module dependency to your app
+- add `stpa.morris` as a module dependency to your app
 
 ```js
 angular.module('my.app', [
-    'stpa.chart'
+    'stpa.morris'
 ])
 ```
 

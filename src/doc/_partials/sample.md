@@ -1,10 +1,10 @@
 ## Usage
 --------------------------
-Just add `stpa.chart` as a module dependency to your app and use the directives as below
+Just add `stpa.morris` as a module dependency to your app and use the directives as below
 
 ```js
 angular.module('my.app', [
-    'stpa.chart'
+    'stpa.morris'
 ])
 ```
 
