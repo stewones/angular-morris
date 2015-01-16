@@ -43,5 +43,11 @@
     },
     "engines": {
         "node": ">=0.10.0"
-    }
+    },
+    "keywords": [
+        "angular",
+        "angular directive",
+        "angular chart",
+        "angular morris"
+    ]
 }
