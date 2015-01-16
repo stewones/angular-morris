@@ -2,8 +2,10 @@
     "name": "angular-morris-chart",
     "version": "1.0.0",
     "private": false,
-    "type": "git",
-    "url": "git://github.com/stpa-co/angular-morris-chart",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/stpa-co/angular-morris-chart"
+    },
     "main": "src/angular-morris-chart.min.js",
     "dependencies": {
         "angular-morris-chart": "1.0.0"
