@@ -1,7 +1,7 @@
 {
     "name": "angular-morris-chart",
     "main": "src/angular-morris-chart.min.js",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         "Stewan Pacheco <talk@stpa.co>"
     ],
