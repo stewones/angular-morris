@@ -8,7 +8,8 @@
     },
     "main": "src/angular-morris-chart.min.js",
     "dependencies": {
-        "angular-morris-chart": "1.0.0"
+        "angular": "1.3.x",
+        "morris.js": "~0.5.1"
     },
     "devDependencies": {
         "browser-sync": "^1.8.2",
