@@ -52,6 +52,12 @@
      'source-clean-partials'
  ]);
 
+ gulp.task('markdown', ['wiredep'], function() {
+     return gulp.src('src/doc/_partials/*.md')
+         .pipe($.markdown())
+         .pipe($.size())
+         .pipe(gulp.dest('src/doc/_partials'));
+ });
 
  gulp.task('source-min', ['markdown'], function() {
      return gulp.src('src/angular-morris-chart.js')
@@ -76,12 +82,6 @@
          .pipe(gulp.dest('./'));
  });
 
- gulp.task('markdown', ['wiredep'], function() {
-     return gulp.src('src/doc/_partials/*.md')
-         .pipe($.markdown())
-         .pipe($.size())
-         .pipe(gulp.dest('src/doc/_partials'));
- });
 
  gulp.task('include', ['markdown'], function() {
      gulp.src(['src/doc/index.html'])
