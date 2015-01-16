@@ -1,18 +1,28 @@
 ## Install for production
 -------------------------
-install `angular-morris-chart` running the following command
+- install `angular-morris-chart` by bower or npm running the following command
 
 ```shell
 $ bower install angular-morris-chart --save
 ```
 
+```shell
+$ npm install angular-morris-chart --save
+```
+
 - **Note:** if you are asked about `Unable to find a suitable version for angular` answer `angular#1.3.x which is required by angular-morris-chart`.
 - **Note:** if you are issued about `github.com connection timed out` just run `git config --global url.https://.insteadOf git://` in terminal.
 
-- include `angular-morris-chart.min.js` on your project. It should be located at `bower_components/angular-morris-chart/src` when you do installation by bower, otherwise just include the file `angular-morris-chart.min.js` to your project
+- include the file `angular-morris-chart.min.js` on your body. If do you use bower it should be located at `bower_components/angular-morris-chart/src`, else if do you use npm it should be located at `node_modules/angular-morris-chart/src`, otherwise just include the file [`angular-morris-chart.min.js`](https://raw.githubusercontent.com/stpa-co/angular-morris-chart/master/src/angular-morris-chart.min.js) to your project.
 
+*example using bower*
 ```html
 <script src="../bower_components/angular-morris-chart/src/angular-morris-chart.min.js"></script>
+```
+
+*example using npm*
+```html
+<script src="../node_modules/angular-morris-chart/src/angular-morris-chart.min.js"></script>
 ```
 
 - add `stpa.chart` as a module dependency to your app
@@ -88,8 +98,9 @@ $ gulp build #Note: maybe you should have to use `sudo`
 Feel free to open issues if you run into a problem or if you just have suggestions. Pull Requests are always welcome.
 
 ## Changelog
+------------
 - 1.0.0
-    - launched `angular-morris-chart` for easy creation of `morris.js` based charts.
+    - launched `angular-morris-chart` for easy creation of `morris.js` charts.
 
 ## License
 ---------------

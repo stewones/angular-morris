@@ -1,1 +1,1 @@
-angular morris chart provides a wrapper of `morris.js` for angular
+angular morris chart provides a wrapper directives of `morris.js` for angular

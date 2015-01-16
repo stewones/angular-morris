@@ -45,7 +45,8 @@ border-radius: 4px;
 ul.nav h1 { font-size: 26px; }
 
 .tab-content { padding: 35px; margin-top: 40px; }
-.tab-content h2 { color: #813a6a;}
+.tab-content h2:first-child { margin-top: 0px;}
+.tab-content h2 { color: #813a6a; margin-top: 45px;}
 .tab-content ul { margin: 10px 0 14px;}
 .tab-content ul li { margin: 10px 0;}
 .tab-content p { margin: 0 0 16px;}
