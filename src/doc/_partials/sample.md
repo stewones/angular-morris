@@ -58,7 +58,8 @@ donut-data='[
     {label: "Download Sales", value: 12},
     {label: "In-Store Sales",value: 30},
     {label: "Mail-Order Sales", value: 20}
-]'>
+]'
+donut-colors='["#515fb4","#7580c3","#98a0d3"]'>
 </div>
 ```
 
@@ -68,7 +69,8 @@ donut-data='[
     {label: "Download Sales", value: 12},
     {label: "In-Store Sales",value: 30},
     {label: "Mail-Order Sales", value: 20}
-]'>
+]'
+donut-colors='["#515fb4","#7580c3","#98a0d3"]'>
 </div>
 
 
