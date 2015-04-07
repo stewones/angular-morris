@@ -37,16 +37,21 @@
         return {
             restrict: 'A',
             scope: {
-                donutData: '='
+                donutData: '=',
+                donutColors: '@'
             },
             link: function(scope, elem, attrs) {
                 scope.$watch('donutData', function() {
                     if (scope.donutData) {
                         if (!scope.donutInstance) {
-                            scope.donutInstance = new Morris.Donut({
+                            var options = {
                                 element: elem,
                                 data: scope.donutData
-                            });
+                            };
+                            if (scope.donutColors !== void 0 || scope.donutColors !== '') {
+                                options.colors = JSON.parse(scope.donutColors);
+                            }
+                            scope.donutInstance = new Morris.Donut(options);
                         } else {
                             scope.donutInstance.setData(scope.donutData);
                         }
