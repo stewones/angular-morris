@@ -12,7 +12,7 @@ function isOnlyChange(event) {
 
 gulp.task('watch', ['inject'], function() {
     //watch doc
-    gulp.watch([path.join(conf.paths.src, '/doc/partials/**/*.md')], ['watch','doc']);
+    gulp.watch([path.join(conf.paths.src, '/doc/partials/**/*.md')], ['watch','doc-dev']);
     gulp.watch([path.join(conf.paths.src, '/**/*.html'), 'bower.json'], ['inject']);
 
 

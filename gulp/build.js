@@ -9,41 +9,14 @@ var $ = require('gulp-load-plugins')({
 });
 
 
-gulp.task('partials', function() {
-
-    return gulp.src([
-        path.join(conf.paths.src, '/doc/**/*.html'),
-        path.join(conf.paths.tmp, '/serve/doc/**/*.html')
-    ])
-        .pipe($.minifyHtml({
-            empty: true,
-            spare: true,
-            quotes: true
-        }))
-        .pipe($.angularTemplatecache('templateCacheHtml.js', {
-            module: conf.appName,
-            root: 'app'
-        }))
-        .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
-});
-
-gulp.task('html', ['inject', 'partials'], function() {
-    var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/partials/templateCacheHtml.js'), {
-        read: false
-    });
-    var partialsInjectOptions = {
-        starttag: '<!-- inject:partials -->',
-        ignorePath: path.join(conf.paths.tmp, '/partials'),
-        addRootSlash: false
-    };
+gulp.task('html', ['inject'], function() {
 
     var htmlFilter = $.filter('**/*.html');
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
     var assets;
 
-    return gulp.src(path.join(conf.paths.tmp, '/serve/**/*.html'))
-        .pipe($.inject(partialsInjectFile, partialsInjectOptions))
+    return gulp.src(path.join(conf.paths.tmp, '/serve/doc/**/*.html'))
         .pipe(assets = $.useref.assets())
         .pipe($.rev())
         .pipe(jsFilter)
@@ -67,25 +40,20 @@ gulp.task('html', ['inject', 'partials'], function() {
             conditionals: true
         }))
         .pipe(htmlFilter.restore())
-        .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
+        .pipe(gulp.dest(path.join(conf.paths.dist, '/doc')))
         .pipe($.size({
             title: path.join(conf.paths.dist, '/'),
             showFiles: true
         }));
 });
-
-
 // Only applies for fonts from bower dependencies
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function() {
-
     return gulp.src($.mainBowerFiles())
-
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
         .pipe($.flatten())
         .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
-
 gulp.task('other', function() {
     return gulp.src([
         path.join(conf.paths.src, '/**/*'),
@@ -94,16 +62,7 @@ gulp.task('other', function() {
         .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
-
 gulp.task('clean', function(done) {
-
     $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
-
-//task for issue when using angular-charts "Failed to load resource: the server responded with a status of 404 (Not Found)""
-gulp.task('angular-charts-fonts', function() {
-    return gulp.src(conf.paths.src + '/assets/icons/**/*.{eot,svg,ttf,woff,woff2}')
-        .pipe($.flatten())
-        .pipe(gulp.dest(conf.paths.dist + '/fonts/'));
-});
-gulp.task('build', ['html', 'fonts', 'other', 'angular-charts-fonts', 'app']);
+gulp.task('build', ['html', 'fonts', 'other','doc-pro']);
