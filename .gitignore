@@ -1,7 +1,6 @@
-node_modules
-bower_components
-dist
-src/example/_partials/*.html
-.tmp
-.sass-cache
-*.log
+node_modules/
+bower_components/
+.sass-cache/
+.tmp/
+dist/
+*.sublime-project

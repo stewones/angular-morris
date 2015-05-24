@@ -1,72 +1,61 @@
- /**
-  * stpa-modal provides a reusable way to do modal in AngularJS
-  * check out documentation in http://modal.stpa.co
-  *
-  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>
-  *
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the “Software”), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  */
- 'use strict';
+'use strict';
 
- var gulp = require('gulp');
+var path = require('path');
+var gulp = require('gulp');
+var conf = require('./conf');
 
- var util = require('util');
+var browserSync = require('browser-sync');
+var browserSyncSpa = require('browser-sync-spa');
 
- var browserSync = require('browser-sync');
+var util = require('util');
 
- var middleware = require('./proxy');
+var middleware = require('./proxy');
 
- function browserSyncInit(baseDir, files, browser) {
-     browser = browser === undefined ? 'default' : browser;
-     var routes = null;
-     console.log(typeof baseDir);
 
-     if (baseDir === 'dist' || (util.isArray(baseDir) && baseDir.indexOf('dist') !== -1)) {
-         routes = {
-             // Should be '/bower_components': '../bower_components'
-             // Waiting for https://github.com/shakyShane/browser-sync/issues/308
-             '/bower_components': 'bower_components'
-         };
-     }
+function browserSyncInit(baseDir, browser) {
+  browser = browser === undefined ? 'default' : browser;
 
-     browserSync.instance = browserSync.init(files, {
-         startPath: '/doc',
-         server: {
-             baseDir: baseDir,
-             middleware: middleware,
-             routes: routes
-         },
-         browser: browser
-     });
+  var routes = null;
+  if(baseDir === conf.paths.src || (util.isArray(baseDir) && baseDir.indexOf(conf.paths.src) !== -1)) {
+    routes = {
+      '/bower_components': 'bower_components'
+    };
+  }
 
- }
+  var server = {
+    baseDir: baseDir,
+    routes: routes
+  };
 
- gulp.task('serve', ['watch'], function() {
-     browserSyncInit([
-         'dist'
-     ], [
-         'dist/**/*',
-     ]);
- });
+  if(middleware.length > 0) {
+    server.middleware = middleware;
+  }
 
- gulp.task('serve:dist', ['build:dist'], function() {
-     browserSyncInit(
-         'dist'
-     );
- });
+  browserSync.instance = browserSync.init({
+    startPath: '/',
+    server: server,
+    browser: browser
+
+  });
+
+}
+
+browserSync.use(browserSyncSpa({
+  selector: '[ng-app]'// Only needed for angular apps
+}));
+
+gulp.task('serve', ['watch','doc'], function () {
+  browserSyncInit([path.join(conf.paths.tmp, '/serve/doc'), conf.paths.src]);
+});
+
+gulp.task('serve:dist', ['build'], function () {
+  browserSyncInit(conf.paths.dist);
+});
+
+gulp.task('serve:e2e', ['inject'], function () {
+  browserSyncInit([conf.paths.tmp + '/serve', conf.paths.src], []);
+});
+
+gulp.task('serve:e2e-dist', ['build'], function () {
+  browserSyncInit(conf.paths.dist, []);
+});

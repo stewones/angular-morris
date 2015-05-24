@@ -1,145 +1,109 @@
- /**
-  * stpa-modal provides a reusable way to do modal in AngularJS
-  * check out documentation in http://modal.stpa.co
-  *
-  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>
-  *
-  * Permission is hereby granted, free of charge, to any person obtaining a copy
-  * of this software and associated documentation files (the “Software”), to deal
-  * in the Software without restriction, including without limitation the rights
-  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  * copies of the Software, and to permit persons to whom the Software is
-  * furnished to do so, subject to the following conditions:
-  *
-  * The above copyright notice and this permission notice shall be included in all
-  * copies or substantial portions of the Software.
-  *
-  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  * SOFTWARE.
-  */
- 'use strict';
+'use strict';
 
- var gulp = require('gulp');
- var fileinclude = require('gulp-file-include');
- var $ = require('gulp-load-plugins')({
-     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
- });
+var path = require('path');
+var gulp = require('gulp');
+var conf = require('./conf');
+
+var $ = require('gulp-load-plugins')({
+    pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+});
 
 
- gulp.task('build', [
-     'build:dist'
- ]);
+gulp.task('partials', function() {
 
- gulp.task('build:dist', [
-     'build:serve',
-     'build:vendor',
- ]);
- gulp.task('build:serve', [
-     'wiredep',
-     'markdown',
-     'include',
-     'css',
-     'js',
-     'cname',
-     'source-min',
-     'source-copy',
-     'source-readme',
-     'source-clean-partials'
- ]);
+    return gulp.src([
+        path.join(conf.paths.src, '/doc/**/*.html'),
+        path.join(conf.paths.tmp, '/serve/doc/**/*.html')
+    ])
+        .pipe($.minifyHtml({
+            empty: true,
+            spare: true,
+            quotes: true
+        }))
+        .pipe($.angularTemplatecache('templateCacheHtml.js', {
+            module: conf.appName,
+            root: 'app'
+        }))
+        .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
+});
 
- gulp.task('markdown', ['wiredep'], function() {
-     return gulp.src('src/doc/_partials/*.md')
-         .pipe($.markdown())
-         .pipe($.size())
-         .pipe(gulp.dest('src/doc/_partials'));
- });
+gulp.task('html', ['inject', 'partials'], function() {
+    var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/partials/templateCacheHtml.js'), {
+        read: false
+    });
+    var partialsInjectOptions = {
+        starttag: '<!-- inject:partials -->',
+        ignorePath: path.join(conf.paths.tmp, '/partials'),
+        addRootSlash: false
+    };
 
- gulp.task('source-min', ['markdown'], function() {
-     return gulp.src('src/angular-morris-chart.js')
-         .pipe($.ngAnnotate())
-         .pipe($.uglify({
-             preserveComments: $.uglifySaveLicense
-         }))
-         .pipe($.stripDebug())
-         .pipe($.rename("angular-morris-chart.min.js"))
-         .pipe($.size())
-         .pipe(gulp.dest('./src'));
- });
+    var htmlFilter = $.filter('**/*.html');
+    var jsFilter = $.filter('**/*.js');
+    var cssFilter = $.filter('**/*.css');
+    var assets;
 
- gulp.task('source-copy', ['source-min'], function() {
-     return gulp.src(['src/angular-morris-chart.js', 'src/angular-morris-chart.min.js'])
-         .pipe(gulp.dest('dist/doc/js'));
- });
+    return gulp.src(path.join(conf.paths.tmp, '/serve/**/*.html'))
+        .pipe($.inject(partialsInjectFile, partialsInjectOptions))
+        .pipe(assets = $.useref.assets())
+        .pipe($.rev())
+        .pipe(jsFilter)
+        .pipe($.ngAnnotate())
+        .pipe($.uglify({
+            preserveComments: $.uglifySaveLicense
+        })).on('error', conf.errorHandler('Uglify'))
+        .pipe(jsFilter.restore())
+        .pipe(cssFilter)
 
- gulp.task('source-readme', ['source-copy'], function() {
-     return gulp.src(['src/doc/_partials/install.md'])
-         .pipe($.rename("README.md"))
-         .pipe(gulp.dest('./'));
- });
+    .pipe($.csso())
+        .pipe(cssFilter.restore())
+        .pipe(assets.restore())
+        .pipe($.useref())
+        .pipe($.revReplace())
+        .pipe(htmlFilter)
+        .pipe($.minifyHtml({
+            empty: true,
+            spare: true,
+            quotes: true,
+            conditionals: true
+        }))
+        .pipe(htmlFilter.restore())
+        .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
+        .pipe($.size({
+            title: path.join(conf.paths.dist, '/'),
+            showFiles: true
+        }));
+});
 
 
- gulp.task('include', ['markdown'], function() {
-     gulp.src(['src/doc/index.html'])
-         .pipe(fileinclude({
-             prefix: '@@',
-             basepath: '@file'
-         }))
-         .pipe(gulp.dest('dist/doc'));
- });
+// Only applies for fonts from bower dependencies
+// Custom fonts are handled by the "other" task
+gulp.task('fonts', function() {
+
+    return gulp.src($.mainBowerFiles())
+
+    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+        .pipe($.flatten())
+        .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
+});
+
+gulp.task('other', function() {
+    return gulp.src([
+        path.join(conf.paths.src, '/**/*'),
+        path.join('!' + conf.paths.src, '/**/*.{html,css,js,less}')
+    ])
+        .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+});
 
 
+gulp.task('clean', function(done) {
 
- gulp.task('css', ['include'], function() {
-     return gulp.src('src/doc/css/**/*')
-         .pipe(gulp.dest('dist/doc/css'));
- });
+    $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
+});
 
- gulp.task('js', ['include'], function() {
-     return gulp.src('src/doc/js/**/*')
-         .pipe(gulp.dest('dist/doc/js'));
- });
-
- gulp.task('cname', ['include'], function() {
-     return gulp.src('CNAME')
-         .pipe(gulp.dest('dist/doc'));
- });
-
- gulp.task('clean', function(done) {
-     $.del(['.tmp', 'dist'], done, {
-         force: true
-     });
- });
-
- gulp.task('source-clean-partials', ['cname'], function(done) {
-     $.del(['src/doc/_partials/**/*.html'], done, {
-         force: true
-     });
- });
-
- gulp.task('build:vendor', ['source-clean-partials'], function() {
-     var jsFilter = $.filter('**/*.js');
-     var cssFilter = $.filter('**/*.css');
-     var assets;
-     return gulp.src('dist/doc/index.html')
-         .pipe(assets = $.useref.assets())
-         .pipe($.rev())
-         .pipe(jsFilter)
-         .pipe($.ngAnnotate())
-         .pipe($.uglify({
-             preserveComments: $.uglifySaveLicense
-         }))
-         .pipe(jsFilter.restore())
-         .pipe(cssFilter)
-         .pipe($.csso())
-         .pipe(cssFilter.restore())
-         .pipe(assets.restore())
-         .pipe($.useref())
-         .pipe($.revReplace())
-         .pipe(gulp.dest('dist/doc'))
-         .pipe($.size());
- });
+//task for issue when using angular-charts "Failed to load resource: the server responded with a status of 404 (Not Found)""
+gulp.task('angular-charts-fonts', function() {
+    return gulp.src(conf.paths.src + '/assets/icons/**/*.{eot,svg,ttf,woff,woff2}')
+        .pipe($.flatten())
+        .pipe(gulp.dest(conf.paths.dist + '/fonts/'));
+});
+gulp.task('build', ['html', 'fonts', 'other', 'angular-charts-fonts', 'app']);
