@@ -33,13 +33,16 @@ a.logo:active { background: transparent !important; }
 pre { }
 
 pre {
-padding: 16px;
+padding: 0 16px;
 margin: 0 0 16px;
 font-size: 13px;
 line-height: 1.45;
 background-color: #f8f8f8; 
 border: none;
 border-radius: 4px;
+}
+.hljs {
+  background: #f9f2f4;
 }
 
 ul.nav h1 { font-size: 26px; }

@@ -1,4 +1,6 @@
-## Install for production
+## angular-morris-chart [![Build Status](https://travis-ci.org/stewones/angular-morris-chart.svg)](https://travis-ci.org/stewones/angular-morris-chart)
+---
+#### For production
 - install `angular-morris-chart` by bower or npm running the following command
 
 ```shell
@@ -43,8 +45,8 @@ angular.module('my.app', [
 ])
 ```
 
-
-## Usage
+---
+### Usage
 There are four directives based on `morris.js`
 
 - `bar-chart`
@@ -54,12 +56,12 @@ There are four directives based on `morris.js`
 
 Check out [documentation](https://angular-morris-chart.stpa.co) for live examples
 
-## Install for development
+---
+### For development
 - install node and bower on your environment
-- cd to your development folder and clone repo
-
+- cd to development folder and clone repo
 ```sh
-$ git clone https://github.com/stpa-co/angular-morris-chart
+$ git clone https://github.com/stewones/angular-morris-chart
 $ cd angular-morris-chart
 ```
 
@@ -73,51 +75,49 @@ $ bower install
 - serve project with live reload
 
 ```sh
+#this will serve on `http://localhost:3000/doc` with live reload
 $ gulp serve
 ```
 
 - serve project on distribution mode
 
 ```sh
+#same above but with minified sources for distribution
 $ gulp serve:dist
 ```
 
 - build project to distribution
 
 ```sh
+#this will generate minified src at `src/angular-morris-chart.min.js`, and docs on `dist/doc` folder.
 $ gulp build
 ```
 
 - test
 
 ```sh
+#run unit tests with karma
 $ gulp test
 ```
 
 - automated test
 
 ```sh
+#unit test with live reload
 $ gulp test:auto
 ```
 
-
+---
 **Notes:**
-- running the command `gulp build` should generate minified src at `src/angular-morris-chart.min.js`, and the docs on `dist/doc` folder.
 
-- running the command `gulp serve` should serve on `http://localhost:3000/doc` with live reload. It also should watch the changes to re-build all the things, generating minified src at `src/angular-morris-chart.min.js`, and docs on `dist/doc` folder.
+- To contribute with this project, open an issue, fork the project, do your work, issue `gulp build` and make a PR. 
 
-- running the command `gulp serve:dist` should do the same above but with all bower dependencies minified.
+- Check the tasks located on gulp folder for more details.
 
-- to update project src please open an issue, fork the project, do your work, run `gulp build` and make a pull-request. thx =D 
+Feel free to open issues if you run into a problem or if you just have suggestions. PR´s are always welcome.
 
-- to update docs just run `gulp build` or `./buil.sh`, and make a pull-request into `gh-pages` branch only with contents of `dist/doc` folder. I like to work with another folder only for the docs (pointing to the same remote), maybe you will also. You can use the `build.sh` script located in the root to automate the process, but check it before.
+---
+#### [Changelog](https://github.com/stewones/angular-morris-chart/releases)
 
-- also check the tasks located on gulp folder for more details.
-
-Feel free to open issues if you run into a problem or if you just have suggestions. Pull Requests are always welcome.
-
-##[Changelog](https://github.com/stewones/angular-morris-chart/releases)
-
-## License
----------------
+#### License
 The `angular-morris-chart` is open-sourced software licensed under the [MIT](http://opensource.org/licenses/MIT) license.
