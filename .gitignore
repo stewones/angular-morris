@@ -5,3 +5,4 @@ coverage/
 .tmp/
 dist/
 *.sublime-project
+*.sublime-workspace
