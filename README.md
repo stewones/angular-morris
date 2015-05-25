@@ -72,35 +72,35 @@ $ npm install
 $ bower install
 ```
 
-- serve project with live reload
+- serve with live reload
 
 ```sh
-#this will serve on `http://localhost:3000/doc` with live reload
+#this serves docs on `http://localhost:3000` with live reload
 $ gulp serve
 ```
 
-- serve project on distribution mode
+- serve on distribution mode
 
 ```sh
 #same above but with minified sources for distribution
 $ gulp serve:dist
 ```
 
-- build project to distribution
+- build all to distribution
 
 ```sh
-#this will generate minified src at `src/angular-morris-chart.min.js`, and docs on `dist/doc` folder.
+#this generates minified src at `src/angular-morris-chart.min.js`, and docs on `dist/doc` folder.
 $ gulp build
 ```
 
-- test
+- tests
 
 ```sh
-#run unit tests with karma
+#run unit test with karma
 $ gulp test
 ```
 
-- automated test
+- automated tests
 
 ```sh
 #unit test with live reload
@@ -110,14 +110,14 @@ $ gulp test:auto
 ---
 **Notes:**
 
-- To contribute with this project, open an issue, fork the project, do your work, issue `gulp build` and make a PR. 
+- To contribute with this project, open an issue, fork the project, do your work, issue `gulp build` and make a PR on master. To update docs (site) make another PR on gh-pages branche with the content generated in `dist/doc` folder.
 
 - Check the tasks located on gulp folder for more details.
+
+- [Changelog](https://github.com/stewones/angular-morris-chart/releases)
 
 Feel free to open issues if you run into a problem or if you just have suggestions. PR´s are always welcome.
 
 ---
-#### [Changelog](https://github.com/stewones/angular-morris-chart/releases)
-
 #### License
-The `angular-morris-chart` is open-sourced software licensed under the [MIT](http://opensource.org/licenses/MIT) license.
+The `angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT).

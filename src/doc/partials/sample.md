@@ -1,5 +1,5 @@
-## Usage
---------------------------
+## Usage [![Build Status](https://travis-ci.org/stewones/angular-morris-chart.svg)](https://travis-ci.org/stewones/angular-morris-chart)
+---
 Just add `angular.morris-chart` as a module dependency to your app and use the directives as below
 
 ```js
@@ -10,7 +10,7 @@ angular.module('my.app', [
 
 
 ## Bar Chart
---------------------------
+---
 
 ```html
 <div
@@ -51,7 +51,7 @@ bar-colors='["#31C0BE", "#c7254e"]'>
 
 
 ## Donut Chart
---------------------------
+---
 
 ```html
 <div
@@ -77,7 +77,7 @@ donut-colors='["#31C0BE","#c7254e","#98a0d3"]'>
 
 
 ## Line Chart
---------------------------
+---
 
 ```html
 <div
@@ -117,7 +117,7 @@ line-colors='["#31C0BE", "#c7254e"]'>
 </div>
 
 ## Area Chart
---------------------------
+---
 
 ```html
 <div
@@ -154,3 +154,7 @@ area-ykeys='["a", "b"]'
 area-labels='["Serie A", "Serie B"]'
 line-colors='["#31C0BE", "#c7254e"]'>
 </div>
+
+---
+#### License
+The `angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT).

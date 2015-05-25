@@ -1,7 +1,7 @@
 /**
  *  Settings
  */
-exports.appName = 'livejob';
+exports.appName = 'angular-morris-chart';
 /**
  *  This file contains the variables used in other gulp files
  *  which defines tasks

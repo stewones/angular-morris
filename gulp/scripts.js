@@ -10,14 +10,18 @@ var $ = require('gulp-load-plugins')();
 
 
 
-gulp.task('scripts', function () {
+gulp.task('scripts', function() {
 
-  return gulp.src(path.join(conf.paths.src, '/**/*.js'))
+    return gulp.src([
+        path.join(conf.paths.src, '/**/*.js'),
+        path.join('!' + conf.paths.src, '/angular-morris-chart.min.js'),
+        path.join('!' + conf.paths.src, '/angular-morris-chart.js')
+    ])
+        .pipe($.jshint())
+        .pipe($.jshint.reporter('jshint-stylish'))
 
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish'))
-
-    .pipe(browserSync.reload({ stream: true }))
-    .pipe($.size());
+    .pipe(browserSync.reload({
+        stream: true
+    }))
+        .pipe($.size());
 });
-

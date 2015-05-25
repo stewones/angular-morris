@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="stpa" ng-controller="MorrisCtrl as vm">
+<html class="no-js" ng-app="angular-morris-chart" ng-controller="MorrisCtrl as vm">
     <head>
         <base href="/" />
         <meta charset="utf-8">
@@ -23,12 +23,12 @@
         <link rel="shortcut icon" href="https://stpa.co/assets/images/favicon.png">
         <!-- /og -->
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+        <!-- build:css({.tmp/serve/doc,src/doc}) styles/vendor.css -->
         <!-- bower:css -->
         <!-- run `gulp inject` to automatically populate bower styles dependencies -->
         <!-- endbower -->
         <!-- endbuild -->
-        <!-- build:css({.tmp/serve,src}) styles/app.css -->
+        <!-- build:css({.tmp/serve/doc,src/doc}) styles/app.css -->
         <!-- inject:css -->
         <!-- css files will be automatically insert here -->
         <!-- endinject -->
@@ -36,11 +36,10 @@
     </head>
     <body>
         <!--[if lt IE 10]>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser.
-            Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
-        </p>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser.
+                Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+            </p>
         <![endif]-->
-
         <a href="https://github.com/stewones/angular-morris-chart"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
         <div class="container">
             <div class="row">
@@ -66,87 +65,87 @@
                             <a href="#install" id="install-tab" role="tab" data-toggle="tab" aria-controls="install" aria-expanded="true">Install</a></li>
                             <li role="presentation" class="active">
                             <a href="#sample" role="tab" id="sample-tab" data-toggle="tab" aria-controls="sample" aria-expanded="false">Examples</a></li>
-                            <li>
-                                <hr />
+                            <li role="presentation">
+                            <a href="https://github.com/stewones/angular-morris-chart/releases" target="_blank" aria-controls="changelog" aria-expanded="false">Changelog</a></li>
+                        </li>
+                        <li>
+                            <hr />
+                        </li>
+                        <li class="text-center copyright">
+                            <p>                
+                            Open an <a href="https://github.com/stewones/angular-morris-chart/issues">issue</a> and make your <a href="https://github.com/stewones/angular-morris-chart/pulls">pull-request</a>.
+                            <br />
+                            Code licensed under MIT.
+                            </p>
+                        </li>
+                        <li class="gh">
+                            <!-- GIT FOLLOW -->
+                            <a class="github-button" href="https://github.com/stewones" data-count-href="/stewones/followers" data-count-api="/users/stewones#followers">Follow me @GitHub</a>
+                            <!-- /GIT FOLLOW -->
+                        </li>
+                    </ul>
+                    <div id="" class="tab-content col-sm-9">
+                        <div role="tabpanel" class="tab-pane fade" id="install" aria-labelledby="install-tab">
+                            @@include('./partials/readme.html')
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade active in" id="sample" aria-labelledby="sample-tab">
+                            @@include('./partials/sample.html')
+                        </div>
+                        <br />
+                        <ul class="social">
+                            <li style="width: 140px; text-align: left; height: 25px;">
+                                <!-- FB -->
+                                <iframe src="//www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fangular-morris-chart.stpa.co&amp;layout=button_count" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowTransparency="true"></iframe>
+                                <!-- /FB -->
                             </li>
-                            <li class="text-center copyright">
-                                <p>
-                                Built with <3 using gulp.js, angular.js, morris.js and twitter bootstrap.
-                                <br />
-                                Open an <a href="https://github.com/stewones/angular-morris-chart/issues">issue</a> and make your <a href="https://github.com/stewones/angular-morris-chart/pulls">pull-request</a>.
-                                <br />
-                                Code licensed under MIT.
-                                </p>
+                            <li style="width: 154px; margin-right: 12px;" >
+                                <!-- G+ -->
+                                <div class="g-plus" data-action="share" data-annotation="bubble" data-href="https://angular-morris-chart.stpa.co"></div>
+                                <!-- /G+ -->
                             </li>
-                            <li class="gh">
-                                <!-- GIT FOLLOW -->
-                                <a class="github-button" href="https://github.com/stewones" data-count-href="/stewones/followers" data-count-api="/users/stewones#followers">Follow me @GitHub</a>
-                                <!-- /GIT FOLLOW -->
+                            <li style="margin-right: 12px;">
+                                <!-- TW+ -->
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="angularjs">Tweet</a>
+                                <!-- /TW+ -->
+                            </li>
+                            <li style="margin-right: 12px;" >
+                                <!-- GIT WATCH -->
+                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-eye" data-count-href="/stewones/angular-morris-chart/watchers" data-count-api="/repos/stewones/angular-morris-chart#subscribers_count">Watch</a>
+                                <!-- /GIT WATCH -->
+                            </li>
+                            <li style="margin-right: 12px;">
+                                <!-- GIT ISSUE -->
+                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart/issues" data-icon="octicon-issue-opened" data-count-api="/repos/stewones/angular-morris-chart#open_issues_count">Issue</a>
+                                <!-- /GIT ISSUE -->
+                            </li>
+                            <li >
+                                <!-- FORK -->
+                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-git-branch" data-count-href="/stewones/angular-morris-chart/network" data-count-api="/repos/stewones/angular-morris-chart#forks_count">Fork</a>
+                                <!-- /FORK -->
                             </li>
                         </ul>
-                        <div id="" class="tab-content col-sm-9">
-                            <div role="tabpanel" class="tab-pane fade" id="install" aria-labelledby="install-tab">
-                                @@include('./partials/install.html')
-                            </div>
-                            <div role="tabpanel" class="tab-pane fade active in" id="sample" aria-labelledby="sample-tab">
-                                @@include('./partials/sample.html')
-                            </div>
-
-                            <br />
-                            <ul class="social">
-                                <li style="width: 140px; text-align: left; height: 25px;">
-                                    <!-- FB -->
-                                    <iframe src="//www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fangular-morris-chart.stpa.co&amp;layout=button_count" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowTransparency="true"></iframe>
-                                    <!-- /FB -->
-                                </li>
-                                <li style="width: 154px; margin-right: 12px;" >
-                                    <!-- G+ -->
-                                    <div class="g-plus" data-action="share" data-annotation="bubble" data-href="https://angular-morris-chart.stpa.co"></div>
-                                    <!-- /G+ -->
-                                </li>
-                                <li style="margin-right: 12px;">
-                                    <!-- TW+ -->
-                                    <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="angularjs">Tweet</a>
-                                    <!-- /TW+ -->
-                                </li>
-                                <li style="margin-right: 12px;" >
-                                    <!-- GIT WATCH -->
-                                    <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-eye" data-count-href="/stewones/angular-morris-chart/watchers" data-count-api="/repos/stewones/angular-morris-chart#subscribers_count">Watch</a>
-                                    <!-- /GIT WATCH -->
-                                </li>
-                                <li style="margin-right: 12px;">
-                                    <!-- GIT ISSUE -->
-                                    <a class="github-button" href="https://github.com/stewones/angular-morris-chart/issues" data-icon="octicon-issue-opened" data-count-api="/repos/stewones/angular-morris-chart#open_issues_count">Issue</a>
-                                    <!-- /GIT ISSUE -->
-                                </li>
-                                <li >
-                                    <!-- FORK -->
-                                    <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-git-branch" data-count-href="/stewones/angular-morris-chart/network" data-count-api="/repos/stewones/angular-morris-chart#forks_count">Fork</a>
-                                    <!-- /FORK -->
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <script src="https://buttons.github.io/buttons.js" async defer id="github-bjs"></script>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        <!-- Injection -->
-        <!-- build:js(src) scripts/vendor.js -->
-        <!-- bower:js -->
-        <!-- run `gulp inject` to automatically populate bower script dependencies -->
-        <!-- endbower -->
-        <!-- endbuild -->
-        <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-        <!-- inject:js -->
-        <!-- js files will be automatically insert here -->
-        <!-- endinject -->
-        <!-- inject:partials -->
-        <!-- angular templates will be automatically converted in js and inserted here -->
-        <!-- endinject -->
-        <!-- endbuild -->
-        <!-- /Injection -->
-    </body>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://buttons.github.io/buttons.js" async defer id="github-bjs"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <!-- Injection -->
+    <!-- build:js(src/doc) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- /Injection -->
+</body>
 </html>

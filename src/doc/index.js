@@ -31,7 +31,7 @@
       */
      'use strict';
 
-     angular.module('stpa', [
+     angular.module('angular-morris-chart', [
          'angular.morris-chart'
      ])
          .controller('MorrisCtrl', ['$timeout', MorrisCtrl]);

@@ -5,18 +5,45 @@ var gulp = require('gulp');
 var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+    pattern: ['gulp-*', 'strip-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
 
-gulp.task('html', ['inject'], function() {
+gulp.task('partials', function() {
 
-    var htmlFilter = $.filter('**/*.html');
+    return gulp.src([
+        path.join(conf.paths.src, '/doc/**/*.html'),
+        path.join(conf.paths.tmp, '/serve/doc/**/*.html')
+    ])
+        .pipe($.minifyHtml({
+            empty: true,
+            spare: true,
+            quotes: true
+        }))
+        .pipe($.angularTemplatecache('templateCacheHtml.js', {
+            module: conf.appName,
+            root: 'doc'
+        }))
+        .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
+});
+
+gulp.task('html', ['inject', 'partials'], function() {
+    var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/partials/templateCacheHtml.js'), {
+        read: false
+    });
+    var partialsInjectOptions = {
+        starttag: '<!-- inject:partials -->',
+        ignorePath: path.join(conf.paths.tmp, '/partials'),
+        addRootSlash: false
+    };
+
+    var htmlFilter = $.filter('*.html');
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
     var assets;
 
-    return gulp.src(path.join(conf.paths.tmp, '/serve/doc/**/*.html'))
+    return gulp.src(path.join(conf.paths.tmp, '/serve/doc/*.html'))
+        .pipe($.inject(partialsInjectFile, partialsInjectOptions))
         .pipe(assets = $.useref.assets())
         .pipe($.rev())
         .pipe(jsFilter)
@@ -42,18 +69,23 @@ gulp.task('html', ['inject'], function() {
         .pipe(htmlFilter.restore())
         .pipe(gulp.dest(path.join(conf.paths.dist, '/doc')))
         .pipe($.size({
-            title: path.join(conf.paths.dist, '/'),
+            title: path.join(conf.paths.dist, '/doc'),
             showFiles: true
         }));
 });
+
+
 // Only applies for fonts from bower dependencies
 // Custom fonts are handled by the "other" task
 gulp.task('fonts', function() {
+
     return gulp.src($.mainBowerFiles())
+
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
         .pipe($.flatten())
         .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
+
 gulp.task('other', function() {
     return gulp.src([
         path.join(conf.paths.src, '/**/*'),
@@ -62,7 +94,53 @@ gulp.task('other', function() {
         .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
+
 gulp.task('clean', function(done) {
+
     $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')], done);
 });
-gulp.task('build', ['html', 'fonts', 'other','doc-pro']);
+
+
+
+gulp.task('lib-min', [], function() {
+    return gulp.src([
+        path.join(conf.paths.src, '/lib/**/*.module.js'),
+        path.join(conf.paths.src, '/lib/**/*.js'),
+        path.join('!' + conf.paths.src, '/lib/**/*.spec.js'),
+        path.join('!' + conf.paths.src, '/lib/**/*.mock.js')
+    ])
+        .pipe($.ngAnnotate())
+        .pipe($.concat('angular-morris-chart.min.js'))
+        .pipe($.uglify({
+            preserveComments: $.uglifySaveLicense
+        }))
+        .pipe($.size())
+        .pipe(gulp.dest(path.join(conf.paths.src, '/')));
+});
+
+
+gulp.task('lib', [], function() {
+    return gulp.src([
+        path.join(conf.paths.src, '/lib/**/*.module.js'),
+        path.join(conf.paths.src, '/lib/**/*.js'),
+        path.join('!' + conf.paths.src, '/lib/**/*.spec.js'),
+        path.join('!' + conf.paths.src, '/lib/**/*.mock.js')
+    ])
+    //.pipe($.ngAnnotate())
+    .pipe($.concat('angular-morris-chart.js'))
+    // .pipe($.uglify({
+    //     preserveComments: $.uglifySaveLicense
+    // }))
+    .pipe($.size())
+        .pipe(gulp.dest(path.join(conf.paths.src, '/')));
+});
+
+gulp.task('readme', [], function() {
+    return gulp.src([
+        path.join(conf.paths.src, '/doc/partials/readme.md')
+    ])
+    .pipe($.rename("README.md"))
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('build', ['html', 'fonts', 'other', 'doc-pro', 'lib-min', 'lib', 'readme']);
