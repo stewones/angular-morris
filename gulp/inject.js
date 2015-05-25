@@ -61,10 +61,10 @@ gulp.task('inject', ['scripts', 'styles'], function() {
 
     return gulp.src(path.join(conf.paths.src, '/doc/*.html'))
         .pipe($.inject(injectStyles, injectOptions))
-        .pipe($.inject(injectScripts, injectOptions))
-    //.pipe($.inject($.streamSeries(injectLibScripts,injectDocScripts), injectOptions))
-    .pipe(wiredep(_.extend({
-        exclude: [/angular-mocks/]
-    }, conf.wiredep)))
+        //.pipe($.inject(injectScripts, injectOptions))
+        .pipe($.inject($.streamSeries(injectLibScripts, injectDocScripts), injectOptions))
+        .pipe(wiredep(_.extend({
+            exclude: [/angular-mocks/]
+        }, conf.wiredep)))
         .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/doc')));
 });
