@@ -1,6 +1,5 @@
 /**
  * angular morris chart provides morris.js wrappers directives for angular
- *
  * check out documentation in http://angular-morris-chart.stpa.co
  *
  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>

@@ -1,7 +1,5 @@
 /**
  * angular morris chart provides morris.js wrappers directives for angular
- * based in ngmorris from Connor James Leech
- *
  * check out documentation in http://angular-morris-chart.stpa.co
  *
  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>
@@ -30,7 +28,6 @@
 })();
 /**
  * angular morris chart provides morris.js wrappers directives for angular
- *
  * check out documentation in http://angular-morris-chart.stpa.co
  *
  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>
@@ -99,8 +96,6 @@
 })();
 /**
  * angular morris chart provides morris.js wrappers directives for angular
- * based in ngmorris from Connor James Leech
- *
  * check out documentation in http://angular-morris-chart.stpa.co
  *
  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>
@@ -168,7 +163,6 @@
 })();
 /**
  * angular morris chart provides morris.js wrappers directives for angular
- *
  * check out documentation in http://angular-morris-chart.stpa.co
  *
  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>
@@ -228,7 +222,6 @@
 })();
 /**
  * angular morris chart provides morris.js wrappers directives for angular
- *
  * check out documentation in http://angular-morris-chart.stpa.co
  *
  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>

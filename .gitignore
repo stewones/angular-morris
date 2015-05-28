@@ -7,3 +7,4 @@ coverage/
 dist/
 *.sublime-project
 *.sublime-workspace
+*.log
