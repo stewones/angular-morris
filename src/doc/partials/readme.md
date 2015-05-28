@@ -1,8 +1,6 @@
 ## angular-morris-chart [![Build Status](https://travis-ci.org/stewones/angular-morris-chart.svg)](https://travis-ci.org/stewones/angular-morris-chart)
----
-#### For production
+### Installation
 - install `angular-morris-chart` by bower or npm running the following command
-
 ```shell
 $ bower install angular-morris-chart --save
 or
@@ -57,7 +55,7 @@ There are four directives based on `morris.js`
 Check out [documentation](https://angular-morris-chart.stpa.co) for live examples
 
 ---
-### For development
+### Development
 - install node and bower on your environment
 - cd to development folder and clone repo
 ```sh
