@@ -1,6 +1,6 @@
 ## Usage [![Build Status](https://travis-ci.org/stewones/angular-morris-chart.svg)](https://travis-ci.org/stewones/angular-morris-chart)
 ---
-Just add `angular.morris-chart` as a module dependency to your app and use the directives as below
+Just add `angular.morris-chart` as a module dependency for your app and use the directives as below
 
 ```js
 angular.module('my.app', [
@@ -157,4 +157,4 @@ line-colors='["#31C0BE", "#c7254e"]'>
 
 ---
 #### License
-The `angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT).
+`angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT).
