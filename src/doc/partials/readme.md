@@ -6,9 +6,9 @@ $ bower install angular-morris-chart --save
 or
 $ npm install angular-morris-chart --save
 ```
-or download [here](https://raw.githubusercontent.com/stewones/angular-morris-chart/master/src/angular-morris-chart.min.js)
+- or download [here](https://raw.githubusercontent.com/stewones/angular-morris-chart/master/src/angular-morris-chart.min.js)
 
-- Append the file `angular-morris-chart.min.js` to end of your body, after the `angular` lib, before your project.
+- append the file `angular-morris-chart.min.js` in to end of body, before your project, after the `angular` and another libs.
 
 
 ```html
@@ -34,10 +34,9 @@ or download [here](https://raw.githubusercontent.com/stewones/angular-morris-cha
 </html>
 ```
 
-- add `angular.morris-chart` as a module dependency of your app
+- add `angular.morris-chart` as a module dependency for your app
 
 ```js
-//adding `angular.morris-chart` as a module dependency
 angular.module('my.app', [
     'angular.morris-chart'
 ])
@@ -56,28 +55,30 @@ Check out [documentation](https://angular-morris-chart.stpa.co) for live example
 
 ---
 ### Development
+
 - install node and bower on your environment
-- cd to development folder and clone repo
+- cd to your desired folder and clone `angular-morris-chart` repository
+
 ```sh
 $ git clone https://github.com/stewones/angular-morris-chart
 $ cd angular-morris-chart
 ```
 
-- install project dependencies
+- install all project dependencies
 
 ```sh
 $ npm install
 $ bower install
 ```
 
-- serve with live reload
+- serve lib/docs with live reload
 
 ```sh
 #this serves docs on `http://localhost:3000` with live reload
 $ gulp serve
 ```
 
-- serve on distribution mode
+- serve lib/docs on distribution mode
 
 ```sh
 #same above but with minified sources for distribution
@@ -91,14 +92,14 @@ $ gulp serve:dist
 $ gulp build
 ```
 
-- tests
+- serve tests
 
 ```sh
 #run unit test with karma
 $ gulp test
 ```
 
-- automated tests
+- serve automated tests
 
 ```sh
 #unit test with live reload
@@ -108,7 +109,7 @@ $ gulp test:auto
 ---
 **Notes:**
 
-- To contribute with this project, open an issue, fork the project, do your work, issue `gulp build` and make a PR on master. To update docs (site) make another PR on gh-pages branche with the content generated in `dist/doc` folder.
+- To contribute with this project, just open a issue, fork the project, make a new branch and do your work. Run `gulp build` before make your PR. To update docs site, make another PR on `gh-pages` branch with only content generated in `dist/doc` folder. Please make sure that all tests are passing by `gulp test`.
 
 - Check the tasks located on gulp folder for more details.
 
@@ -118,4 +119,4 @@ Feel free to open issues if you run into a problem or if you just have suggestio
 
 ---
 #### License
-The `angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT).
+`angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT).
