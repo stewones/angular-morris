@@ -1,3 +1,5 @@
+## Test new line
+
 ## angular-morris-chart [![Build Status](https://travis-ci.org/stewones/angular-morris-chart.svg)](https://travis-ci.org/stewones/angular-morris-chart)
 ### Installation
 - install `angular-morris-chart` by bower or npm running the following command
