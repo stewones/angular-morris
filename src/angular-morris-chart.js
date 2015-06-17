@@ -188,12 +188,13 @@
 "use strict";
 /* global Morris */
 (function() {
-    angular.module("angular.morris-chart").directive('donutChart', function() {
+    angular.module("angular.morris-chart").directive('donutChart', /*@ngInject*/function($injector) {
         return {
             restrict: 'A',
             scope: {
                 donutData: '=',
-                donutColors: '='
+                donutColors: '=',
+                donutFormatter: '='
             },
             link: function(scope, elem) {
                 scope.$watch('donutData', function() {
@@ -209,6 +210,16 @@
                                 element: elem,
                                 data: scope.donutData,
                                 colors: scope.donutColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
+                            };
+                            // Check if a formatter function has been set
+                            if (typeof scope.donutFormatter === 'function') {
+                                options.formatter = scope.donutFormatter;
+                            } else if (typeof scope.donutFormatter === 'string' && $injector.has(scope.donutFormatter + 'Filter')) {
+                                // If the formatter is a string, check for a matching filter
+                                var filter = $injector.get(scope.donutFormatter + 'Filter');
+                                options.formatter = function (input) {
+                                    return filter.call(this, input);
+                                };
                             }
                             scope.donutInstance = new Morris.Donut(options);
                         } else {
