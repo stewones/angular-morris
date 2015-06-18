@@ -129,7 +129,8 @@
                 barY: '=',
                 barLabels: '=',
                 barData: '=',
-                barColors: '='
+                barColors: '=',
+                barStacked: '='
             },
             link: function(scope, elem) {
                 scope.$watch('barData', function() {
@@ -142,6 +143,8 @@
                             scope.barData = JSON.parse(scope.barData);
                         if (typeof scope.barColors === 'string')
                             scope.barColors = JSON.parse(scope.barColors);
+                        if (typeof scope.barStacked === 'string')
+                            scope.barStacked = JSON.parse(scope.barStacked);
                         if (!scope.barInstance) {
                             scope.barInstance = new Morris.Bar({
                                 element: elem,
@@ -150,6 +153,7 @@
                                 ykeys: scope.barY,
                                 labels: scope.barLabels,
                                 barColors: scope.barColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                stacked: scope.barStacked || false,
                                 xLabelMargin: 2
                             });
                         } else {
