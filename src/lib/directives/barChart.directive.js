@@ -34,7 +34,8 @@
                 barLabels: '=',
                 barData: '=',
                 barColors: '=',
-                barStacked: '='
+                barStacked: '=',
+                barResize: '='
             },
             link: function(scope, elem) {
                 scope.$watch('barData', function() {
@@ -49,6 +50,8 @@
                             scope.barColors = JSON.parse(scope.barColors);
                         if (typeof scope.barStacked === 'string')
                             scope.barStacked = JSON.parse(scope.barStacked);
+                        if (typeof scope.barResize === 'string')
+                            scope.barResize = JSON.parse(scope.barResize);
                         if (!scope.barInstance) {
                             scope.barInstance = new Morris.Bar({
                                 element: elem,
@@ -58,6 +61,7 @@
                                 labels: scope.barLabels,
                                 barColors: scope.barColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
                                 stacked: scope.barStacked || false,
+                                resize: scope.barResize || false,
                                 xLabelMargin: 2
                             });
                         } else {
