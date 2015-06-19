@@ -9,7 +9,9 @@ describe('Component <barChart> directive', function() {
         xkey,
         ykeys,
         labels,
-        colors;
+        colors,
+        stacked,
+        resize;
     beforeEach(module('angular.morris-chart'));
     beforeEach(inject(function(_$compile_, _$rootScope_) {
         $compile = _$compile_;
@@ -20,8 +22,10 @@ describe('Component <barChart> directive', function() {
         ykeys = '["a", "b"]';
         labels = '["Serie A", "Serie B"]';
         colors = '["#515fb4","#7580c3","#98a0d3"]';
+        stacked = false;
+        resize = false;
         spyOn(Morris, 'Bar');
-        element = $compile("<div bar-chart bar-data='" + data + "' bar-x='" + xkey + "' bar-y='" + ykeys + "' bar-labels='" + labels + "' bar-colors='" + colors + "'></div>")(scope);
+        element = $compile("<div bar-chart bar-data='" + data + "' bar-x='" + xkey + "' bar-y='" + ykeys + "' bar-labels='" + labels + "' bar-colors='" + colors + "' bar-stacked='" + stacked + "' bar-resize='" + resize + "'></div>")(scope);
         $rootScope.$digest();
     }));
 
@@ -33,6 +37,8 @@ describe('Component <barChart> directive', function() {
             ykeys: JSON.parse(ykeys),
             labels: JSON.parse(labels),
             barColors: JSON.parse(colors),
+            stacked: JSON.parse(stacked),
+            resize: JSON.parse(resize),
             xLabelMargin: 2
         });
     });
