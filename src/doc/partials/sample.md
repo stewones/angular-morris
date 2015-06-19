@@ -77,10 +77,7 @@ donut-colors='["#31C0BE","#c7254e","#98a0d3"]'
 donut-formatter='"currency"'>
 </div>
 
-`donut-formatter` can either be a string for a filter name (eg. 'currency') or a reference to a scope function.
-
-
-[Example Plunker](http://plnkr.co/edit/AsxnDG?p=preview)
+<p class="text-center">`donut-formatter` can either be a string for a filter name (eg. 'currency') or a reference to a scope function. [example in plunker](http://plnkr.co/edit/AsxnDG?p=preview)</p>
 
 
 ## Line Chart

@@ -16,28 +16,23 @@ gulp.task('inject', ['scripts', 'styles'], function() {
     var injectStyles = gulp.src([
         path.join(conf.paths.tmp, '/serve/doc/**/*.css'),
         path.join(conf.paths.src, '/doc/**/*.css'), //inject components
-        path.join('!' + conf.paths.tmp, '/serve/doc/vendor.css')
+        //path.join('!' + conf.paths.tmp, '/serve/doc/vendor.css')
     ], {
         read: false
     });
 
 
     var injectScripts = gulp.src([
-
         path.join(conf.paths.src, '/**/*.module.js'),
         path.join(conf.paths.src, '/**/*.js'),
-
         path.join('!' + conf.paths.src, '/**/*.spec.js'),
         path.join('!' + conf.paths.src, '/**/*.mock.js')
-
     ]).pipe($.angularFilesort()).on('error', conf.errorHandler('AngularFilesort'));
 
 
     var injectLibScripts = gulp.src([
-
         path.join(conf.paths.src, '/lib/**/*.module.js'),
         path.join(conf.paths.src, '/lib/**/*.js'),
-
         path.join('!' + conf.paths.src, '/lib/**/*.spec.js'),
         path.join('!' + conf.paths.src, '/lib/**/*.mock.js')
 
