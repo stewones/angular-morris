@@ -1,7 +1,6 @@
 ## Usage [![Build Status](https://travis-ci.org/stewones/angular-morris-chart.svg)](https://travis-ci.org/stewones/angular-morris-chart)
----
-Just add `angular.morris-chart` as a module dependency for your app and use the directives as below
 
+Just add `angular.morris-chart` as a module dependency for your app and then use the directives
 ```js
 angular.module('my.app', [
     'angular.morris-chart'
@@ -10,8 +9,6 @@ angular.module('my.app', [
 
 
 ## Bar Chart
----
-
 ```html
 <div
 bar-chart 
@@ -51,8 +48,6 @@ bar-colors='["#31C0BE", "#c7254e"]'>
 
 
 ## Donut Chart
----
-
 ```html
 <div
 donut-chart
@@ -81,8 +76,6 @@ donut-formatter='"currency"'>
 
 
 ## Line Chart
----
-
 ```html
 <div
 line-chart
@@ -102,7 +95,6 @@ line-colors='["#31C0BE", "#c7254e"]'>
 </div>
 ```
 
-
 <div
 line-chart
 line-data='[
@@ -121,8 +113,6 @@ line-colors='["#31C0BE", "#c7254e"]'>
 </div>
 
 ## Area Chart
----
-
 ```html
 <div
 area-chart
