@@ -275,7 +275,8 @@
                     lineXkey: '@',
                     lineYkeys: '=',
                     lineLabels: '=',
-                    lineColors: '='
+                    lineColors: '=',
+                    parseTime: '='
                 },
                 link: function(scope, elem) {
                     scope.$watch('lineData', function() {
@@ -297,6 +298,7 @@
                                     xkey: scope.lineXkey,
                                     ykeys: scope.lineYkeys,
                                     labels: scope.lineLabels,
+                                    parseTime: scope.parseTime,
                                     lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
                                 });
                             } else {
