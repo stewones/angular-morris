@@ -9,6 +9,7 @@ describe('Component <lineChart> directive', function() {
         xkey,
         ykeys,
         labels,
+        parseTime,
         colors;
     beforeEach(module('angular.morris-chart'));
     beforeEach(inject(function(_$compile_, _$rootScope_) {
@@ -20,8 +21,9 @@ describe('Component <lineChart> directive', function() {
         ykeys = '["a", "b"]';
         labels = '["Serie A", "Serie B"]';
         colors = '["#31C0BE","#c7254e","#98a0d3"]';
+        parseTime = true;
         spyOn(Morris, 'Line');
-        element = $compile("<div line-chart line-data='" + data + "' line-xkey='" + xkey + "' line-ykeys='" + ykeys + "' line-labels='" + labels + "' line-colors='" + colors + "'></div>")(scope);
+        element = $compile("<div line-chart line-data='" + data + "' line-xkey='" + xkey + "' line-ykeys='" + ykeys + "' line-labels='" + labels + "' line-colors='" + colors + "' parse-time='" + parseTime + "''></div>")(scope);
         $rootScope.$digest();
     }));
 
@@ -32,7 +34,8 @@ describe('Component <lineChart> directive', function() {
             xkey: xkey,
             ykeys: JSON.parse(ykeys),
             labels: JSON.parse(labels),
-            lineColors: JSON.parse(colors)
+            lineColors: JSON.parse(colors),
+            parseTime: parseTime
         });
     });
 });
