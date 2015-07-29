@@ -304,6 +304,11 @@
                                     lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
                                 });
                             } else {
+                                scope.lineInstance.options.xkey = scope.lineXkey;
+                                scope.lineInstance.options.ykeys = scope.lineYkeys;
+                                scope.lineInstance.options.labels = scope.lineLabels;
+                                scope.lineInstance.options.parseTime = scope.parseTime;
+                                scope.lineInstance.options.lineColors = scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'];
                                 scope.lineInstance.setData(scope.lineData);
                             }
                         }
