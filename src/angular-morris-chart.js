@@ -62,7 +62,8 @@
                     areaXkey: '@',
                     areaYkeys: '=',
                     areaLabels: '=',
-                    lineColors: '='
+                    lineColors: '=',
+                    barResize: '='                
                 },
                 link: function(scope, elem) {
                     scope.$watch('areaData', function() {
@@ -83,7 +84,8 @@
                                     xkey: scope.areaXkey,
                                     ykeys: scope.areaYkeys,
                                     labels: scope.areaLabels,
-                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
+                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                    resize: scope.barResize || false,
                                 });
                             } else {
                                 scope.areaInstance.setData(scope.areaData);
@@ -202,7 +204,8 @@
             scope: {
                 donutData: '=',
                 donutColors: '=',
-                donutFormatter: '='
+                donutFormatter: '=',
+                donutResize: '='
             },
             link: function(scope, elem) {
                 scope.$watch('donutData', function() {
@@ -217,7 +220,8 @@
                             var options = {
                                 element: elem,
                                 data: scope.donutData,
-                                colors: scope.donutColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
+                                colors: scope.donutColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                resize: scope.donutResize || false
                             };
                             // Check if a formatter function has been set
                             if (typeof scope.donutFormatter === 'function') {
@@ -276,6 +280,7 @@
                     lineYkeys: '=',
                     lineLabels: '=',
                     lineColors: '=',
+                    lineResize: '=',
                     parseTime: '='
                 },
                 link: function(scope, elem) {
@@ -301,7 +306,8 @@
                                     ykeys: scope.lineYkeys,
                                     labels: scope.lineLabels,
                                     parseTime: scope.parseTime,
-                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
+                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                    resize: scope.lineResize || false
                                 });
                             } else {
                                 scope.lineInstance.options.xkey = scope.lineXkey;
@@ -309,6 +315,7 @@
                                 scope.lineInstance.options.labels = scope.lineLabels;
                                 scope.lineInstance.options.parseTime = scope.parseTime;
                                 scope.lineInstance.options.lineColors = scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'];
+                                scope.lineInstance.options.resize = scope.lineResize || false;
                                 scope.lineInstance.setData(scope.lineData);
                             }
                         }

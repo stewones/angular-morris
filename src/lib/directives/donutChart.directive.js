@@ -31,6 +31,7 @@
             scope: {
                 donutData: '=',
                 donutColors: '=',
+                donutResize: "=",
                 donutFormatter: '='
             },
             link: function(scope, elem) {
@@ -46,7 +47,8 @@
                             var options = {
                                 element: elem,
                                 data: scope.donutData,
-                                colors: scope.donutColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
+                                colors: scope.donutColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                resize: scope.donutResize || false
                             };
                             // Check if a formatter function has been set
                             if (typeof scope.donutFormatter === 'function') {

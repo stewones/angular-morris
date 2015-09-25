@@ -9,7 +9,8 @@ describe('Component <areaChart> directive', function() {
         xkey,
         ykeys,
         labels,
-        colors;
+        colors,
+        resize;
     beforeEach(module('angular.morris-chart'));
     beforeEach(inject(function(_$compile_, _$rootScope_) {
         $compile = _$compile_;
@@ -20,6 +21,7 @@ describe('Component <areaChart> directive', function() {
         ykeys = '["a", "b"]';
         labels = '["Serie A", "Serie B"]';
         colors = '["#515fb4","#7580c3","#98a0d3"]';
+        resize = false;
         spyOn(Morris, 'Area');
         element = $compile("<div area-chart area-data='" + data + "' area-xkey='" + xkey + "' area-ykeys='" + ykeys + "' area-labels='" + labels + "' line-colors='" + colors + "'></div>")(scope);
         $rootScope.$digest();

@@ -6,7 +6,8 @@ describe('Component <donutChart> directive', function() {
         $rootScope,
         element,
         data,
-        colors;
+        colors,
+        resize;
     beforeEach(module('angular.morris-chart'));
     beforeEach(inject(function(_$compile_, _$rootScope_) {
         $compile = _$compile_;
@@ -14,6 +15,7 @@ describe('Component <donutChart> directive', function() {
         scope = _$rootScope_.$new();
         data = '[{"label": "Download Sales", "value": 12},{"label": "In-Store Sales","value": 30},{"label": "Mail-Order Sales", "value": 20}]';
         colors = '["#515fb4","#7580c3","#98a0d3"]';
+        resize = false;
         scope.myFormatter = function(input) {
             return '$' + input;
         };
