@@ -23,7 +23,7 @@ describe('Component <areaChart> directive', function() {
         colors = '["#515fb4","#7580c3","#98a0d3"]';
         resize = false;
         spyOn(Morris, 'Area');
-        element = $compile("<div area-chart area-data='" + data + "' area-xkey='" + xkey + "' area-ykeys='" + ykeys + "' area-labels='" + labels + "' line-colors='" + colors + "'></div>")(scope);
+        element = $compile("<div area-chart area-data='" + data + "' area-xkey='" + xkey + "' area-ykeys='" + ykeys + "' area-labels='" + labels + "' line-colors='" + colors + "' area-resize='" + resize + "'></div>")(scope);
         $rootScope.$digest();
     }));
 
@@ -34,7 +34,8 @@ describe('Component <areaChart> directive', function() {
             xkey: xkey,
             ykeys: JSON.parse(ykeys),
             labels: JSON.parse(labels),
-            lineColors: JSON.parse(colors)
+            lineColors: JSON.parse(colors),
+            resize: JSON.parse(resize)
         });
     });
 });

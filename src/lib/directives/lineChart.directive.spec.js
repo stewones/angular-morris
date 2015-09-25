@@ -25,7 +25,7 @@ describe('Component <lineChart> directive', function() {
         resize = false;
         parseTime = true;
         spyOn(Morris, 'Line');
-        element = $compile("<div line-chart line-data='" + data + "' line-xkey='" + xkey + "' line-ykeys='" + ykeys + "' line-labels='" + labels + "' line-colors='" + colors + "' parse-time='" + parseTime + "''></div>")(scope);
+        element = $compile("<div line-chart line-data='" + data + "' line-xkey='" + xkey + "' line-ykeys='" + ykeys + "' line-labels='" + labels + "' line-colors='" + colors + "' line-resize='" + resize + "' parse-time='" + parseTime + "''></div>")(scope);
         $rootScope.$digest();
     }));
 
@@ -37,6 +37,7 @@ describe('Component <lineChart> directive', function() {
             ykeys: JSON.parse(ykeys),
             labels: JSON.parse(labels),
             lineColors: JSON.parse(colors),
+            resize: JSON.parse(resize),
             parseTime: parseTime
         });
     });

@@ -24,33 +24,36 @@ describe('Component <donutChart> directive', function() {
     }));
 
     it('Needs to map Morris correctly', function() {
-        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "'></div>")(scope);
+        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-resize='" + resize + "'></div>")(scope);
         $rootScope.$digest();
         expect(Morris.Donut).toHaveBeenCalledWith({
             element: jasmine.any(Object),
             data: JSON.parse(data),
+            resize: JSON.parse(resize),
             colors: JSON.parse(colors)
         });
     });
 
     it('Optionally supports a formatter function', function() {
-        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-formatter='myFormatter'></div>")(scope);
+        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-resize='" + resize + "' donut-formatter='myFormatter'></div>")(scope);
         $rootScope.$digest();
         expect(Morris.Donut).toHaveBeenCalledWith({
             element: jasmine.any(Object),
             data: JSON.parse(data),
             colors: JSON.parse(colors),
+            resize: JSON.parse(resize),
             formatter: scope.myFormatter
         });
     });
 
     it('Optionally supports a formatter filter name', function() {
-        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-formatter='\"currency\"'></div>")(scope);
+        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-resize='" + resize + "' donut-formatter='\"currency\"'></div>")(scope);
         $rootScope.$digest();
         expect(Morris.Donut).toHaveBeenCalledWith({
             element: jasmine.any(Object),
             data: JSON.parse(data),
             colors: JSON.parse(colors),
+            resize: JSON.parse(resize),
             formatter: jasmine.any(Function)
         });
         expect(Morris.Donut.calls.argsFor(0)[0].formatter('25')).toBe('$25.00');
