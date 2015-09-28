@@ -34,7 +34,8 @@
                     areaXkey: '@',
                     areaYkeys: '=',
                     areaLabels: '=',
-                    lineColors: '='
+                    lineColors: '=',
+                    areaResize: '='
                 },
                 link: function(scope, elem) {
                     scope.$watch('areaData', function() {
@@ -55,7 +56,8 @@
                                     xkey: scope.areaXkey,
                                     ykeys: scope.areaYkeys,
                                     labels: scope.areaLabels,
-                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
+                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                    resize: scope.areaResize || false
                                 });
                             } else {
                                 scope.areaInstance.setData(scope.areaData);

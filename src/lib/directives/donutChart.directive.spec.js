@@ -6,7 +6,8 @@ describe('Component <donutChart> directive', function() {
         $rootScope,
         element,
         data,
-        colors;
+        colors,
+        resize;
     beforeEach(module('angular.morris-chart'));
     beforeEach(inject(function(_$compile_, _$rootScope_) {
         $compile = _$compile_;
@@ -14,6 +15,7 @@ describe('Component <donutChart> directive', function() {
         scope = _$rootScope_.$new();
         data = '[{"label": "Download Sales", "value": 12},{"label": "In-Store Sales","value": 30},{"label": "Mail-Order Sales", "value": 20}]';
         colors = '["#515fb4","#7580c3","#98a0d3"]';
+        resize = false;
         scope.myFormatter = function(input) {
             return '$' + input;
         };
@@ -22,33 +24,36 @@ describe('Component <donutChart> directive', function() {
     }));
 
     it('Needs to map Morris correctly', function() {
-        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "'></div>")(scope);
+        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-resize='" + resize + "'></div>")(scope);
         $rootScope.$digest();
         expect(Morris.Donut).toHaveBeenCalledWith({
             element: jasmine.any(Object),
             data: JSON.parse(data),
+            resize: JSON.parse(resize),
             colors: JSON.parse(colors)
         });
     });
 
     it('Optionally supports a formatter function', function() {
-        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-formatter='myFormatter'></div>")(scope);
+        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-resize='" + resize + "' donut-formatter='myFormatter'></div>")(scope);
         $rootScope.$digest();
         expect(Morris.Donut).toHaveBeenCalledWith({
             element: jasmine.any(Object),
             data: JSON.parse(data),
             colors: JSON.parse(colors),
+            resize: JSON.parse(resize),
             formatter: scope.myFormatter
         });
     });
 
     it('Optionally supports a formatter filter name', function() {
-        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-formatter='\"currency\"'></div>")(scope);
+        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-resize='" + resize + "' donut-formatter='\"currency\"'></div>")(scope);
         $rootScope.$digest();
         expect(Morris.Donut).toHaveBeenCalledWith({
             element: jasmine.any(Object),
             data: JSON.parse(data),
             colors: JSON.parse(colors),
+            resize: JSON.parse(resize),
             formatter: jasmine.any(Function)
         });
         expect(Morris.Donut.calls.argsFor(0)[0].formatter('25')).toBe('$25.00');

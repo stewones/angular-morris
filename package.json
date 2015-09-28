@@ -9,7 +9,7 @@
   "main": "src/angular-morris-chart.min.js",
   "dependencies": {},
   "devDependencies": {
-    "browser-sync": "~2.7.6",
+    "browser-sync": "^2.9.6",
     "browser-sync-spa": "~1.0.2",
     "chalk": "~0.5.1",
     "concat-stream": "~1.4.7",
