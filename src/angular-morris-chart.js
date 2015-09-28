@@ -63,7 +63,7 @@
                     areaYkeys: '=',
                     areaLabels: '=',
                     lineColors: '=',
-                    barResize: '='                
+                    areaResize: '='
                 },
                 link: function(scope, elem) {
                     scope.$watch('areaData', function() {
@@ -85,7 +85,7 @@
                                     ykeys: scope.areaYkeys,
                                     labels: scope.areaLabels,
                                     lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
-                                    resize: scope.barResize || false,
+                                    resize: scope.areaResize || false
                                 });
                             } else {
                                 scope.areaInstance.setData(scope.areaData);
@@ -204,8 +204,8 @@
             scope: {
                 donutData: '=',
                 donutColors: '=',
-                donutFormatter: '=',
-                donutResize: '='
+                donutResize: "=",
+                donutFormatter: '='
             },
             link: function(scope, elem) {
                 scope.$watch('donutData', function() {
@@ -280,8 +280,8 @@
                     lineYkeys: '=',
                     lineLabels: '=',
                     lineColors: '=',
-                    lineResize: '=',
-                    parseTime: '='
+                    parseTime: '=',
+                    lineResize: "="
                 },
                 link: function(scope, elem) {
                     scope.$watch('lineData', function() {
@@ -306,8 +306,8 @@
                                     ykeys: scope.lineYkeys,
                                     labels: scope.lineLabels,
                                     parseTime: scope.parseTime,
-                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
-                                    resize: scope.lineResize || false
+                                    resize: scope.lineResize || false,
+                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
                                 });
                             } else {
                                 scope.lineInstance.options.xkey = scope.lineXkey;
@@ -315,7 +315,6 @@
                                 scope.lineInstance.options.labels = scope.lineLabels;
                                 scope.lineInstance.options.parseTime = scope.parseTime;
                                 scope.lineInstance.options.lineColors = scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'];
-                                scope.lineInstance.options.resize = scope.lineResize || false;
                                 scope.lineInstance.setData(scope.lineData);
                             }
                         }
