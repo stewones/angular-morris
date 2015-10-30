@@ -25,18 +25,18 @@
 "use strict";
 /* global Morris */
 (function() {
-    angular.module("angular.morris-chart").directive('barChart', function() {
+    angular.module("angular.morris-chart").directive('barChart', /*@ngInject*/function(morrisChartService) {
+        // List of known option keys for barChart according to morris.js docs:
+        // http://morrisjs.github.io/morris.js/bars.html
+        var OPTION_KEYS = [
+            'data', 'xkey', 'ykeys', 'labels', 'barColors', 'stacked', 'hideHover',
+            'hoverCallback', 'axes', 'grid', 'gridTextColor', 'gridTextSize', 'gridTextFamily',
+            'gridTextWeight', 'resize'
+        ];
+
         return {
             restrict: 'A',
-            scope: {
-                barX: '@',
-                barY: '=',
-                barLabels: '=',
-                barData: '=',
-                barColors: '=',
-                barStacked: '=',
-                barResize: '='
-            },
+            scope: morrisChartService.populateScopeDefinition({barColors: '=', barX: '@', barY: '='}, 'bar', OPTION_KEYS),
             link: function(scope, elem) {
                 scope.$watch('barData', function() {
                     if (scope.barData) {
@@ -52,18 +52,21 @@
                             scope.barStacked = JSON.parse(scope.barStacked);
                         if (typeof scope.barResize === 'string')
                             scope.barResize = JSON.parse(scope.barResize);
+
+
                         if (!scope.barInstance) {
-                            scope.barInstance = new Morris.Bar({
+                            // Default options
+                            var options = morrisChartService.populateOptions({
                                 element: elem,
-                                data: scope.barData,
+                                barColors: scope.barColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                stacked: false,
+                                resize: false,
                                 xkey: scope.barX,
                                 ykeys: scope.barY,
-                                labels: scope.barLabels,
-                                barColors: scope.barColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
-                                stacked: scope.barStacked || false,
-                                resize: scope.barResize || false,
                                 xLabelMargin: 2
-                            });
+                            }, OPTION_KEYS, 'bar', scope);
+
+                            scope.barInstance = new Morris.Bar(options);
                         } else {
                             scope.barInstance.setData(scope.barData);
                         }

@@ -25,14 +25,14 @@
 "use strict";
 /* global Morris */
 (function() {
-    angular.module("angular.morris-chart").directive('donutChart', /*@ngInject*/function($injector) {
+    angular.module("angular.morris-chart").directive('donutChart', /*@ngInject*/function(morrisChartService) {
+        // List of known option keys for donutChart according to morris.js docs:
+        // http://morrisjs.github.io/morris.js/donuts.html
+        var OPTION_KEYS = ['data', 'colors', 'formatter', 'resize'];
+
         return {
             restrict: 'A',
-            scope: {
-                donutData: '=',
-                donutColors: '=',
-                donutFormatter: '='
-            },
+            scope: morrisChartService.populateScopeDefinition({}, 'donut', OPTION_KEYS),
             link: function(scope, elem) {
                 scope.$watch('donutData', function() {
                     if (scope.donutData) {
@@ -43,21 +43,15 @@
                             scope.donutColors = JSON.parse(scope.donutColors);
 
                         if (!scope.donutInstance) {
-                            var options = {
+                            // Generate Morris chart options
+                            var options = morrisChartService.populateOptions({
                                 element: elem,
-                                data: scope.donutData,
-                                colors: scope.donutColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
-                            };
-                            // Check if a formatter function has been set
-                            if (typeof scope.donutFormatter === 'function') {
-                                options.formatter = scope.donutFormatter;
-                            } else if (typeof scope.donutFormatter === 'string' && $injector.has(scope.donutFormatter + 'Filter')) {
-                                // If the formatter is a string, check for a matching filter
-                                var filter = $injector.get(scope.donutFormatter + 'Filter');
-                                options.formatter = function (input) {
-                                    return filter.call(this, input);
-                                };
-                            }
+                                colors: ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
+                            }, OPTION_KEYS, 'donut', scope);
+
+                            // Checks if there are angular filters available for certain options
+                            morrisChartService.processFilterOptions(['formatter'], options);
+
                             scope.donutInstance = new Morris.Donut(options);
                         } else {
                             scope.donutInstance.setData(scope.donutData);

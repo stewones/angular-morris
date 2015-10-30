@@ -26,16 +26,22 @@
 /* global Morris */
 (function() {
     angular.module("angular.morris-chart").directive('areaChart',
-        function() {
+        /*@ngInject*/function(morrisChartService) {
+            // List of known option keys for areaChart according to morris.js docs:
+            // http://morrisjs.github.io/morris.js/lines.html
+            var OPTION_KEYS = [
+                'data', 'xkey', 'ykeys', 'labels', 'lineColors', 'lineWidth', 'pointSize',
+                'pointFillColors', 'pointStrokeColors', 'ymax', 'ymin', 'smooth', 'hideHover',
+                'hoverCallback', 'parseTime', 'units', 'postUnits', 'preUnits', 'dateFormat',
+                'xLabels', 'xLabelFormat', 'xLabelAngle', 'yLabelFormat', 'goals', 'goalStrokeWidth',
+                'goalLineColors', 'events', 'eventStrokeWidth', 'eventLineColors', 'continuousLine',
+                'axes', 'grid', 'gridTextColor', 'gridTextSize', 'gridTextFamily', 'gridTextWeight',
+                'fillOpacity', 'resize', 'behaveLikeLine'
+            ];
+
             return {
                 restrict: 'A',
-                scope: {
-                    areaData: '=',
-                    areaXkey: '@',
-                    areaYkeys: '=',
-                    areaLabels: '=',
-                    lineColors: '='
-                },
+                scope: morrisChartService.populateScopeDefinition({lineColors: '='}, 'area', OPTION_KEYS, 'xkey'),
                 link: function(scope, elem) {
                     scope.$watch('areaData', function() {
                         if (scope.areaData) {
@@ -49,14 +55,16 @@
                                 scope.lineColors = JSON.parse(scope.lineColors);
 
                             if (!scope.areaInstance) {
-                                scope.areaInstance = new Morris.Area({
+                                // Generate Morris chart options
+                                var options = morrisChartService.populateOptions({
                                     element: elem,
-                                    data: scope.areaData,
-                                    xkey: scope.areaXkey,
-                                    ykeys: scope.areaYkeys,
-                                    labels: scope.areaLabels,
                                     lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
-                                });
+                                }, OPTION_KEYS, 'area', scope);
+
+                                // Checks if there are angular filters available for certain options
+                                morrisChartService.processFilterOptions(['dateFormat', 'xLabelFormat', 'yLabelFormat'], options);
+
+                                scope.areaInstance = new Morris.Area(options);
                             } else {
                                 scope.areaInstance.setData(scope.areaData);
                             }
