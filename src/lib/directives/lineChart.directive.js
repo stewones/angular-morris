@@ -26,17 +26,22 @@
 /* global Morris */
 (function() {
     angular.module("angular.morris-chart").directive('lineChart',
-        function() {
+        /*@ngInject*/function(morrisChartService) {
+            // List of known option keys for lineChart according to morris.js docs:
+            // http://morrisjs.github.io/morris.js/lines.html
+            var OPTION_KEYS = [
+                'data', 'xkey', 'ykeys', 'labels', 'lineColors', 'lineWidth', 'pointSize',
+                'pointFillColors', 'pointStrokeColors', 'ymax', 'ymin', 'smooth', 'hideHover',
+                'hoverCallback', 'parseTime', 'units', 'postUnits', 'preUnits', 'dateFormat',
+                'xLabels', 'xLabelFormat', 'xLabelAngle', 'yLabelFormat', 'goals', 'goalStrokeWidth',
+                'goalLineColors', 'events', 'eventStrokeWidth', 'eventLineColors', 'continuousLine',
+                'axes', 'grid', 'gridTextColor', 'gridTextSize', 'gridTextFamily', 'gridTextWeight',
+                'fillOpacity', 'resize'
+            ];
+
             return {
                 restrict: 'A',
-                scope: {
-                    lineData: '=',
-                    lineXkey: '@',
-                    lineYkeys: '=',
-                    lineLabels: '=',
-                    lineColors: '=',
-                    parseTime: '='
-                },
+                scope: morrisChartService.populateScopeDefinition({lineColors: '=', parseTime: '='}, 'line', OPTION_KEYS, 'xkey'),
                 link: function(scope, elem) {
                     scope.$watch('lineData', function() {
                         if (scope.lineData) {
@@ -52,16 +57,19 @@
                                 scope.lineColors = JSON.parse(scope.lineColors);
                             if (typeof scope.parseTime === 'boolean')
                                 scope.parseTime = JSON.parse(scope.parseTime);
+
                             if (!scope.lineInstance) {
-                                scope.lineInstance = new Morris.Line({
+                                // Default options
+                                var options = morrisChartService.populateOptions({
                                     element: elem,
-                                    data: scope.lineData,
-                                    xkey: scope.lineXkey,
-                                    ykeys: scope.lineYkeys,
-                                    labels: scope.lineLabels,
-                                    parseTime: scope.parseTime,
-                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
-                                });
+                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                    parseTime: scope.parseTime
+                                }, OPTION_KEYS, 'line', scope);
+
+                                // Checks if there are angular filters available for certain options
+                                morrisChartService.processFilterOptions(['dateFormat', 'xLabelFormat', 'yLabelFormat'], options);
+
+                                scope.lineInstance = new Morris.Line(options);
                             } else {
                                 scope.lineInstance.options.xkey = scope.lineXkey;
                                 scope.lineInstance.options.ykeys = scope.lineYkeys;

@@ -24,5 +24,72 @@
  */
 "use strict";
 (function() {
-    angular.module('angular.morris-chart', []);
+    angular.module('angular.morris-chart', [])
+        // Utility functions
+        .factory('morrisChartService', /*@ngInject*/function($injector) {
+            var s = {
+                /**
+                 * Takes a morris.js option key and converts it to an attribute name.
+                 * @param prefix {string}
+                 * @param key {string}
+                 * @returns {string}
+                 */
+                keyToAttr: function(prefix, key) {
+                    return prefix + key.substring(0, 1).toUpperCase() + key.substring(1);
+                },
+
+                /**
+                 * Populates a directive scope definition object from a given set of option keys
+                 * @param scopeDefinition {object}
+                 * @param prefix {string}
+                 * @param optionKeys {string[]}
+                 * @param [atKey] {string}
+                 * @returns {object}
+                 */
+                populateScopeDefinition: function(scopeDefinition, prefix, optionKeys, atKey) {
+                    angular.forEach(optionKeys, function(key) {
+                        // Prefix the option key
+                        scopeDefinition[s.keyToAttr(prefix, key)] = key === atKey ? '@' : '=';
+                    });
+                    return scopeDefinition;
+                },
+
+                /**
+                 * Populates an options object for a Morris chart using a set of option keys and a scope object.
+                 * @param options {object}
+                 * @param optionKeys {string[]}
+                 * @param prefix {string}
+                 * @param scope {object}
+                 * @returns {object}
+                 */
+                populateOptions: function(options, optionKeys, prefix, scope) {
+                    // Apply known optons from morris.js doco
+                    angular.forEach(optionKeys, function(key) {
+                        var attrKey = s.keyToAttr(prefix, key);
+                        if (scope.hasOwnProperty(attrKey) && typeof scope[attrKey] !== 'undefined') {
+                            options[key] = scope[attrKey];
+                        }
+                    });
+                    return options;
+                },
+
+                /**
+                 * Tries to apply certain options as names for angular filters
+                 * @param filterKeys {string[]}
+                 * @param options {object}
+                 */
+                processFilterOptions: function(filterKeys, options) {
+                    angular.forEach(filterKeys, function(key) {
+                        // If the formatter is a string, check for a matching filter
+                        if (typeof options[key] === 'string' && $injector.has(options[key] + 'Filter')) {
+                            var filter = $injector.get(options[key] + 'Filter');
+                            options[key] = function (input) {
+                                return filter.call(this, input);
+                            };
+                        }
+                    });
+                }
+            };
+            return s;
+        });
 })();

@@ -24,7 +24,74 @@
  */
 "use strict";
 (function() {
-    angular.module('angular.morris-chart', []);
+    angular.module('angular.morris-chart', [])
+        // Utility functions
+        .factory('morrisChartService', /*@ngInject*/function($injector) {
+            var s = {
+                /**
+                 * Takes a morris.js option key and converts it to an attribute name.
+                 * @param prefix {string}
+                 * @param key {string}
+                 * @returns {string}
+                 */
+                keyToAttr: function(prefix, key) {
+                    return prefix + key.substring(0, 1).toUpperCase() + key.substring(1);
+                },
+
+                /**
+                 * Populates a directive scope definition object from a given set of option keys
+                 * @param scopeDefinition {object}
+                 * @param prefix {string}
+                 * @param optionKeys {string[]}
+                 * @param [atKey] {string}
+                 * @returns {object}
+                 */
+                populateScopeDefinition: function(scopeDefinition, prefix, optionKeys, atKey) {
+                    angular.forEach(optionKeys, function(key) {
+                        // Prefix the option key
+                        scopeDefinition[s.keyToAttr(prefix, key)] = key === atKey ? '@' : '=';
+                    });
+                    return scopeDefinition;
+                },
+
+                /**
+                 * Populates an options object for a Morris chart using a set of option keys and a scope object.
+                 * @param options {object}
+                 * @param optionKeys {string[]}
+                 * @param prefix {string}
+                 * @param scope {object}
+                 * @returns {object}
+                 */
+                populateOptions: function(options, optionKeys, prefix, scope) {
+                    // Apply known optons from morris.js doco
+                    angular.forEach(optionKeys, function(key) {
+                        var attrKey = s.keyToAttr(prefix, key);
+                        if (scope.hasOwnProperty(attrKey) && typeof scope[attrKey] !== 'undefined') {
+                            options[key] = scope[attrKey];
+                        }
+                    });
+                    return options;
+                },
+
+                /**
+                 * Tries to apply certain options as names for angular filters
+                 * @param filterKeys {string[]}
+                 * @param options {object}
+                 */
+                processFilterOptions: function(filterKeys, options) {
+                    angular.forEach(filterKeys, function(key) {
+                        // If the formatter is a string, check for a matching filter
+                        if (typeof options[key] === 'string' && $injector.has(options[key] + 'Filter')) {
+                            var filter = $injector.get(options[key] + 'Filter');
+                            options[key] = function (input) {
+                                return filter.call(this, input);
+                            };
+                        }
+                    });
+                }
+            };
+            return s;
+        });
 })();
 /**
  * angular morris chart provides morris.js wrappers directives for angular
@@ -54,16 +121,22 @@
 /* global Morris */
 (function() {
     angular.module("angular.morris-chart").directive('areaChart',
-        function() {
+        /*@ngInject*/function(morrisChartService) {
+            // List of known option keys for areaChart according to morris.js docs:
+            // http://morrisjs.github.io/morris.js/lines.html
+            var OPTION_KEYS = [
+                'data', 'xkey', 'ykeys', 'labels', 'lineColors', 'lineWidth', 'pointSize',
+                'pointFillColors', 'pointStrokeColors', 'ymax', 'ymin', 'smooth', 'hideHover',
+                'hoverCallback', 'parseTime', 'units', 'postUnits', 'preUnits', 'dateFormat',
+                'xLabels', 'xLabelFormat', 'xLabelAngle', 'yLabelFormat', 'goals', 'goalStrokeWidth',
+                'goalLineColors', 'events', 'eventStrokeWidth', 'eventLineColors', 'continuousLine',
+                'axes', 'grid', 'gridTextColor', 'gridTextSize', 'gridTextFamily', 'gridTextWeight',
+                'fillOpacity', 'resize', 'behaveLikeLine'
+            ];
+
             return {
                 restrict: 'A',
-                scope: {
-                    areaData: '=',
-                    areaXkey: '@',
-                    areaYkeys: '=',
-                    areaLabels: '=',
-                    lineColors: '='
-                },
+                scope: morrisChartService.populateScopeDefinition({lineColors: '='}, 'area', OPTION_KEYS, 'xkey'),
                 link: function(scope, elem) {
                     scope.$watch('areaData', function() {
                         if (scope.areaData) {
@@ -77,14 +150,16 @@
                                 scope.lineColors = JSON.parse(scope.lineColors);
 
                             if (!scope.areaInstance) {
-                                scope.areaInstance = new Morris.Area({
+                                // Generate Morris chart options
+                                var options = morrisChartService.populateOptions({
                                     element: elem,
-                                    data: scope.areaData,
-                                    xkey: scope.areaXkey,
-                                    ykeys: scope.areaYkeys,
-                                    labels: scope.areaLabels,
                                     lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
-                                });
+                                }, OPTION_KEYS, 'area', scope);
+
+                                // Checks if there are angular filters available for certain options
+                                morrisChartService.processFilterOptions(['dateFormat', 'xLabelFormat', 'yLabelFormat'], options);
+
+                                scope.areaInstance = new Morris.Area(options);
                             } else {
                                 scope.areaInstance.setData(scope.areaData);
                             }
@@ -121,18 +196,18 @@
 "use strict";
 /* global Morris */
 (function() {
-    angular.module("angular.morris-chart").directive('barChart', function() {
+    angular.module("angular.morris-chart").directive('barChart', /*@ngInject*/function(morrisChartService) {
+        // List of known option keys for barChart according to morris.js docs:
+        // http://morrisjs.github.io/morris.js/bars.html
+        var OPTION_KEYS = [
+            'data', 'xkey', 'ykeys', 'labels', 'barColors', 'stacked', 'hideHover',
+            'hoverCallback', 'axes', 'grid', 'gridTextColor', 'gridTextSize', 'gridTextFamily',
+            'gridTextWeight', 'resize'
+        ];
+
         return {
             restrict: 'A',
-            scope: {
-                barX: '@',
-                barY: '=',
-                barLabels: '=',
-                barData: '=',
-                barColors: '=',
-                barStacked: '=',
-                barResize: '='
-            },
+            scope: morrisChartService.populateScopeDefinition({barColors: '=', barX: '@', barY: '='}, 'bar', OPTION_KEYS),
             link: function(scope, elem) {
                 scope.$watch('barData', function() {
                     if (scope.barData) {
@@ -148,18 +223,21 @@
                             scope.barStacked = JSON.parse(scope.barStacked);
                         if (typeof scope.barResize === 'string')
                             scope.barResize = JSON.parse(scope.barResize);
+
+
                         if (!scope.barInstance) {
-                            scope.barInstance = new Morris.Bar({
+                            // Default options
+                            var options = morrisChartService.populateOptions({
                                 element: elem,
-                                data: scope.barData,
+                                barColors: scope.barColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                stacked: false,
+                                resize: false,
                                 xkey: scope.barX,
                                 ykeys: scope.barY,
-                                labels: scope.barLabels,
-                                barColors: scope.barColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
-                                stacked: scope.barStacked || false,
-                                resize: scope.barResize || false,
                                 xLabelMargin: 2
-                            });
+                            }, OPTION_KEYS, 'bar', scope);
+
+                            scope.barInstance = new Morris.Bar(options);
                         } else {
                             scope.barInstance.setData(scope.barData);
                         }
@@ -196,14 +274,14 @@
 "use strict";
 /* global Morris */
 (function() {
-    angular.module("angular.morris-chart").directive('donutChart', /*@ngInject*/function($injector) {
+    angular.module("angular.morris-chart").directive('donutChart', /*@ngInject*/function(morrisChartService) {
+        // List of known option keys for donutChart according to morris.js docs:
+        // http://morrisjs.github.io/morris.js/donuts.html
+        var OPTION_KEYS = ['data', 'colors', 'formatter', 'resize'];
+
         return {
             restrict: 'A',
-            scope: {
-                donutData: '=',
-                donutColors: '=',
-                donutFormatter: '='
-            },
+            scope: morrisChartService.populateScopeDefinition({}, 'donut', OPTION_KEYS),
             link: function(scope, elem) {
                 scope.$watch('donutData', function() {
                     if (scope.donutData) {
@@ -214,21 +292,15 @@
                             scope.donutColors = JSON.parse(scope.donutColors);
 
                         if (!scope.donutInstance) {
-                            var options = {
+                            // Generate Morris chart options
+                            var options = morrisChartService.populateOptions({
                                 element: elem,
-                                data: scope.donutData,
-                                colors: scope.donutColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
-                            };
-                            // Check if a formatter function has been set
-                            if (typeof scope.donutFormatter === 'function') {
-                                options.formatter = scope.donutFormatter;
-                            } else if (typeof scope.donutFormatter === 'string' && $injector.has(scope.donutFormatter + 'Filter')) {
-                                // If the formatter is a string, check for a matching filter
-                                var filter = $injector.get(scope.donutFormatter + 'Filter');
-                                options.formatter = function (input) {
-                                    return filter.call(this, input);
-                                };
-                            }
+                                colors: ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
+                            }, OPTION_KEYS, 'donut', scope);
+
+                            // Checks if there are angular filters available for certain options
+                            morrisChartService.processFilterOptions(['formatter'], options);
+
                             scope.donutInstance = new Morris.Donut(options);
                         } else {
                             scope.donutInstance.setData(scope.donutData);
@@ -267,17 +339,22 @@
 /* global Morris */
 (function() {
     angular.module("angular.morris-chart").directive('lineChart',
-        function() {
+        /*@ngInject*/function(morrisChartService) {
+            // List of known option keys for lineChart according to morris.js docs:
+            // http://morrisjs.github.io/morris.js/lines.html
+            var OPTION_KEYS = [
+                'data', 'xkey', 'ykeys', 'labels', 'lineColors', 'lineWidth', 'pointSize',
+                'pointFillColors', 'pointStrokeColors', 'ymax', 'ymin', 'smooth', 'hideHover',
+                'hoverCallback', 'parseTime', 'units', 'postUnits', 'preUnits', 'dateFormat',
+                'xLabels', 'xLabelFormat', 'xLabelAngle', 'yLabelFormat', 'goals', 'goalStrokeWidth',
+                'goalLineColors', 'events', 'eventStrokeWidth', 'eventLineColors', 'continuousLine',
+                'axes', 'grid', 'gridTextColor', 'gridTextSize', 'gridTextFamily', 'gridTextWeight',
+                'fillOpacity', 'resize'
+            ];
+
             return {
                 restrict: 'A',
-                scope: {
-                    lineData: '=',
-                    lineXkey: '@',
-                    lineYkeys: '=',
-                    lineLabels: '=',
-                    lineColors: '=',
-                    parseTime: '='
-                },
+                scope: morrisChartService.populateScopeDefinition({lineColors: '=', parseTime: '='}, 'line', OPTION_KEYS, 'xkey'),
                 link: function(scope, elem) {
                     scope.$watch('lineData', function() {
                         if (scope.lineData) {
@@ -293,16 +370,19 @@
                                 scope.lineColors = JSON.parse(scope.lineColors);
                             if (typeof scope.parseTime === 'boolean')
                                 scope.parseTime = JSON.parse(scope.parseTime);
+
                             if (!scope.lineInstance) {
-                                scope.lineInstance = new Morris.Line({
+                                // Default options
+                                var options = morrisChartService.populateOptions({
                                     element: elem,
-                                    data: scope.lineData,
-                                    xkey: scope.lineXkey,
-                                    ykeys: scope.lineYkeys,
-                                    labels: scope.lineLabels,
-                                    parseTime: scope.parseTime,
-                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed']
-                                });
+                                    lineColors: scope.lineColors || ['#0b62a4', '#7a92a3', '#4da74d', '#afd8f8', '#edc240', '#cb4b4b', '#9440ed'],
+                                    parseTime: scope.parseTime
+                                }, OPTION_KEYS, 'line', scope);
+
+                                // Checks if there are angular filters available for certain options
+                                morrisChartService.processFilterOptions(['dateFormat', 'xLabelFormat', 'yLabelFormat'], options);
+
+                                scope.lineInstance = new Morris.Line(options);
                             } else {
                                 scope.lineInstance.options.xkey = scope.lineXkey;
                                 scope.lineInstance.options.ykeys = scope.lineYkeys;
