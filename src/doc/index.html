@@ -1,81 +1,85 @@
 <!doctype html>
 <html class="no-js" ng-app="angular-morris-chart" ng-controller="MorrisCtrl as vm">
-    <head>
-        <base href="/" />
-        <meta charset="utf-8">
-        <title>angular morris chart - wrapper directives of morris.js for angular</title>
-        <meta name="description" content="angular morris chart provides a wrapper directives of morris.js for angular 1.x">
-        <meta name="viewport" content="width=device-width">
-        <meta name="author" content="stpa.co" />
-        <meta name="robots" content="index, follow"/>
-        <!-- og -->
-        <meta content="article" property="og:type">
-        <meta content="angular morris chart - wrapper directives of morris.js for angular" property="og:title">
-        <meta content="angular morris chart provides wrapper directives of morris.js for angular" property="og:description">
-        <meta content="https://angular-morris-chart.stpa.co" property="og:url">
-        <meta content="https://stpa.co/about/" property="article:author">
-        <meta content="https://stpa.co/assets/images/stpa-symbol.png" property="og:image">
-        <meta content="angularjs" property="article:section">
-        <meta content="modal" property="article:tag">
-        <meta content="angular.js" property="article:tag">
-        <meta content="morris.js" property="article:tag">
-        <meta content="chart" property="article:tag">
-        <link rel="shortcut icon" href="https://stpa.co/assets/images/favicon.png">
-        <!-- /og -->
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <!-- build:css({.tmp/serve/doc,src/doc}) styles/vendor.css -->
-        <!-- bower:css -->
-        <!-- run `gulp inject` to automatically populate bower styles dependencies -->
-        <!-- endbower -->
-        <!-- endbuild -->
-        <!-- build:css({.tmp/serve/doc,src/doc}) styles/app.css -->
-        <!-- inject:css -->
-        <!-- css files will be automatically insert here -->
-        <!-- endinject -->
-        <!-- endbuild -->
-    </head>
-    <body>
-        <!--[if lt IE 10]>
+
+<head>
+    <base href="/" />
+    <meta charset="utf-8">
+    <title>angular morris chart - wrapper directives of morris.js for angular</title>
+    <meta name="description" content="angular morris chart provides a wrapper directives of morris.js for angular 1.x">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="stpa.co" />
+    <meta name="robots" content="index, follow" />
+    <!-- og -->
+    <meta content="article" property="og:type">
+    <meta content="angular morris chart - wrapper directives of morris.js for angular" property="og:title">
+    <meta content="angular morris chart provides wrapper directives of morris.js for angular" property="og:description">
+    <meta content="https://angular-morris-chart.stpa.co" property="og:url">
+    <meta content="https://stpa.co/about/" property="article:author">
+    <meta content="https://stpa.co/assets/images/stpa-symbol.png" property="og:image">
+    <meta content="angularjs" property="article:section">
+    <meta content="modal" property="article:tag">
+    <meta content="angular.js" property="article:tag">
+    <meta content="morris.js" property="article:tag">
+    <meta content="chart" property="article:tag">
+    <link rel="shortcut icon" href="https://stpa.co/assets/images/favicon.png">
+    <!-- /og -->
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css({.tmp/serve/doc,src/doc}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp/serve/doc,src/doc}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+
+<body>
+    <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser.
                 Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
             </p>
         <![endif]-->
-        <a href="https://github.com/stewones/angular-morris-chart"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-                        <ul class="nav tabs-vertical col-sm-3" role="tablist">
-                            <li class="text-center">
-                                <a href="http://stpa.co" class="logo">
+    <a href="https://github.com/stewones/angular-morris-chart"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67"
+        alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                    <ul class="nav tabs-vertical col-sm-3" role="tablist">
+                        <li class="text-center">
+                            <a href="http://stpa.co" class="logo">
                                 <img src="https://stpa.co/assets/images/stpa-symbol.png">
-                                </a>
-                                <h1>angular morris chart</h1>
-                                <!-- GIT STAR -->
-                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-star" data-count-href="/stewones/angular-morris-chart/stargazers" data-count-api="/repos/stewones/angular-morris-chart#stargazers_count">Star</a>
-                                <!-- /GIT STAR -->
-                                <p>
+                            </a>
+                            <h1>angular morris chart</h1>
+                            <!-- GIT STAR -->
+                            <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-star" data-count-href="/stewones/angular-morris-chart/stargazers"
+                            data-count-api="/repos/stewones/angular-morris-chart#stargazers_count">Star</a>
+                            <!-- /GIT STAR -->
+                            <p>
                                 @@include('./partials/intro.html')
-                                </p>
-                            </li>
-                            <li>
-                                <hr />
-                            </li>
-                            <li role="presentation">
+                            </p>
+                        </li>
+                        <li>
+                            <hr />
+                        </li>
+                        <li role="presentation">
                             <a href="#install" id="install-tab" role="tab" data-toggle="tab" aria-controls="install" aria-expanded="true">Install</a></li>
-                            <li role="presentation" class="active">
+                        <li role="presentation" class="active">
                             <a href="#sample" role="tab" id="sample-tab" data-toggle="tab" aria-controls="sample" aria-expanded="false">Examples</a></li>
-                            <li role="presentation">
+                        <li role="presentation">
                             <a href="https://github.com/stewones/angular-morris-chart/releases" target="_blank" aria-controls="changelog" aria-expanded="false">Changelog</a></li>
                         </li>
                         <li>
                             <hr />
                         </li>
                         <li class="text-center copyright">
-                            <p>                
-                            Open an <a href="https://github.com/stewones/angular-morris-chart/issues">issue</a> and make your <a href="https://github.com/stewones/angular-morris-chart/pulls">pull-request</a>.
-                            <br />
-                            Code licensed under MIT.
+                            <p>
+                                Open an <a href="https://github.com/stewones/angular-morris-chart/issues">issue</a> and make
+                                your <a href="https://github.com/stewones/angular-morris-chart/pulls">pull-request</a>.
+                                <br /> Code licensed under MIT.
                             </p>
                         </li>
                         <li class="gh">
@@ -83,7 +87,19 @@
                             <a class="github-button" href="https://github.com/stewones" data-count-href="/stewones/followers" data-count-api="/users/stewones#followers">Follow me @GitHub</a>
                             <!-- /GIT FOLLOW -->
                         </li>
+                        <li>
+                            <br />
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- angular-morris-chart -->
+                            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4883862110656795" data-ad-slot="8531994718" data-ad-format="auto"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+
+                            </script>
+                        </li>
                     </ul>
+
+
                     <div id="" class="tab-content col-sm-9">
                         <div role="tabpanel" class="tab-pane fade" id="install" aria-labelledby="install-tab">
                             @@include('./partials/readme.html')
@@ -91,14 +107,48 @@
                         <div role="tabpanel" class="tab-pane fade active in" id="sample" aria-labelledby="sample-tab">
                             @@include('./partials/sample.html')
                         </div>
+
+                        <h2 id="contributors">Contributors</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">
+                                        <a href="https://github.com/stewones"><img alt="stewones" src="https://avatars.githubusercontent.com/u/719763?v=3&s=117"
+                                            width="117"></a>
+                                    </th>
+                                    <th style="text-align:center">
+                                        <a href="https://github.com/venkatramachandran"><img alt="venkatramachandran" src="https://avatars.githubusercontent.com/u/4744258?v=3&s=117"
+                                            width="117"></a>
+                                    </th>
+                                    <th style="text-align:center">
+                                        <a href="https://github.com/rolaveric"><img alt="rolaveric" src="https://avatars.githubusercontent.com/u/960670?v=3&s=117"
+                                            width="117"></a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align:center"><a href="https://github.com/stewones">stewones</a></td>
+                                    <td style="text-align:center"><a href="https://github.com/venkatramachandran">venkatramachandran</a></td>
+                                    <td style="text-align:center"><a href="https://github.com/tarlepp">rolaveric</a></td>                           
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <h4 id="license">License</h4>
+                        <p><code>angular-morris-chart</code> is open-sourced software licensed under <a href="http://opensource.org/licenses/MIT">MIT</a>, maintained by <a href="https://github.com/stewones">stewones</a>. Feel free to open an issue or make a PR.</p>
+
+
                         <br />
                         <ul class="social">
                             <li style="width: 140px; text-align: left; height: 25px;">
                                 <!-- FB -->
-                                <iframe src="//www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fangular-morris-chart.stpa.co&amp;layout=button_count" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowTransparency="true"></iframe>
+                                <iframe src="//www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fangular-morris-chart.stpa.co&amp;layout=button_count"
+                                scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowTransparency="true"></iframe>
                                 <!-- /FB -->
                             </li>
-                            <li style="width: 154px; margin-right: 12px;" >
+                            <li style="width: 154px; margin-right: 12px;">
                                 <!-- G+ -->
                                 <div class="g-plus" data-action="share" data-annotation="bubble" data-href="https://angular-morris-chart.stpa.co"></div>
                                 <!-- /G+ -->
@@ -108,19 +158,22 @@
                                 <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="angularjs">Tweet</a>
                                 <!-- /TW+ -->
                             </li>
-                            <li style="margin-right: 12px;" >
+                            <li style="margin-right: 12px;">
                                 <!-- GIT WATCH -->
-                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-eye" data-count-href="/stewones/angular-morris-chart/watchers" data-count-api="/repos/stewones/angular-morris-chart#subscribers_count">Watch</a>
+                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-eye" data-count-href="/stewones/angular-morris-chart/watchers"
+                                data-count-api="/repos/stewones/angular-morris-chart#subscribers_count">Watch</a>
                                 <!-- /GIT WATCH -->
                             </li>
                             <li style="margin-right: 12px;">
                                 <!-- GIT ISSUE -->
-                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart/issues" data-icon="octicon-issue-opened" data-count-api="/repos/stewones/angular-morris-chart#open_issues_count">Issue</a>
+                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart/issues" data-icon="octicon-issue-opened"
+                                data-count-api="/repos/stewones/angular-morris-chart#open_issues_count">Issue</a>
                                 <!-- /GIT ISSUE -->
                             </li>
-                            <li >
+                            <li>
                                 <!-- FORK -->
-                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-git-branch" data-count-href="/stewones/angular-morris-chart/network" data-count-api="/repos/stewones/angular-morris-chart#forks_count">Fork</a>
+                                <a class="github-button" href="https://github.com/stewones/angular-morris-chart" data-icon="octicon-git-branch" data-count-href="/stewones/angular-morris-chart/network"
+                                data-count-api="/repos/stewones/angular-morris-chart#forks_count">Fork</a>
                                 <!-- /FORK -->
                             </li>
                         </ul>
@@ -131,7 +184,9 @@
     </div>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://buttons.github.io/buttons.js" async defer id="github-bjs"></script>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    </script>
     <!-- Injection -->
     <!-- build:js(src/doc) scripts/vendor.js -->
     <!-- bower:js -->
@@ -148,4 +203,5 @@
     <!-- endbuild -->
     <!-- /Injection -->
 </body>
+
 </html>

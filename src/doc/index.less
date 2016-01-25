@@ -30,22 +30,16 @@ a.logo { padding: 0 !important; }
 a.logo img { max-width: 140px !important; margin-bottom: -36px; }
 a.logo:hover { background: transparent !important; opacity: .5}
 a.logo:active { background: transparent !important; }
-pre { }
+
 
 pre {
-padding: 0 16px;
-margin: 0 0 16px;
-font-size: 13px;
-line-height: 1.45;
-background-color: #f8f8f8; 
-border: none;
-border-radius: 4px;
+background-color: #333 !important; 
 }
 .hljs {
-  background: #f9f2f4;
+  background: #333;
 }
 
-ul.nav h1 { font-size: 26px; }
+ul.nav h1 { font-size: 21px; }
 
 .tab-content { padding: 35px; margin-top: 40px; }
 .tab-content h2:first-child { margin-top: 0px;}
@@ -67,3 +61,11 @@ ul.social li { text-align:center; list-style-type: none; display: inline-block; 
 li.gh { margin: 10px 0 0; text-align: center; }
 
 p { font-size: 12px}
+
+.hljs-string, .hljs-title, .hljs-constant, .hljs-parent, .hljs-tag .hljs-value, .hljs-rule .hljs-value, .hljs-preprocessor, .hljs-pragma, .hljs-name, .haml .hljs-symbol, .ruby .hljs-symbol, .ruby .hljs-symbol .hljs-string, .hljs-template_tag, .django .hljs-variable, .smalltalk .hljs-class, .hljs-addition, .hljs-flow, .hljs-stream, .bash .hljs-variable, .pf .hljs-variable, .apache .hljs-tag, .apache .hljs-cbracket, .tex .hljs-command, .tex .hljs-special, .erlang_repl .hljs-function_or_atom, .asciidoc .hljs-header, .markdown .hljs-header, .coffeescript .hljs-attribute {
+    color: #FF7575;
+}
+
+.hljs, .hljs-subst, .hljs-tag .hljs-title, .nginx .hljs-title {
+    color: #eee;
+}

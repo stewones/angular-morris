@@ -110,9 +110,3 @@ $ gulp test:auto
 - To update docs site, just make another PR on `gh-pages` branch with only content generated in `dist/doc`. Please make sure that all tests are passing by `gulp test`. Verify all the tasks located on gulp folder for more details.
 
 - [Changelog](https://github.com/stewones/angular-morris-chart/releases)
-
-Feel free to open issues if you run into a problem or if you just have suggestions. PR´s are always welcome.
-
----
-#### License
-`angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT).

@@ -1,6 +1,8 @@
 /**
- * angular morris chart provides morris.js wrappers directives for angular
- * check out documentation in http://angular-morris-chart.stpa.co
+ * angular-morris-chart provides morris.js directives for angular 1.x
+ * 
+ * Software licensed under MIT, maintained by github.com/stewones. Feel free to open an issue or make a PR.
+ * Check out documentation and full list of contributors in http://angular-morris-chart.stpa.co
  *
  * Copyright © 2014 Stewan Pacheco <talk@stpa.co>
  *

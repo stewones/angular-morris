@@ -148,7 +148,3 @@ area-ykeys='["a", "b"]'
 area-labels='["Serie A", "Serie B"]'
 line-colors='["#31C0BE", "#c7254e"]'>
 </div>
-
----
-#### License
-`angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT).
