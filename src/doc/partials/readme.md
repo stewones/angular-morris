@@ -110,3 +110,12 @@ $ gulp test:auto
 - To update docs site, just make another PR on `gh-pages` branch with only content generated in `dist/doc`. Please make sure that all tests are passing by `gulp test`. Verify all the tasks located on gulp folder for more details.
 
 - [Changelog](https://github.com/stewones/angular-morris-chart/releases)
+
+## Contributors
+
+[<img alt="stewones" src="https://avatars.githubusercontent.com/u/719763?v=3&s=117" width="117">](https://github.com/stewones) |[<img alt="venkatramachandran" src="https://avatars.githubusercontent.com/u/4744258?v=3&s=117" width="117">](https://github.com/venkatramachandran) |[<img alt="rolaveric" src="https://avatars.githubusercontent.com/u/960670?v=3&s=117" width="117">](https://github.com/rolaveric) |
+:---: |:---: |:---: |
+[stewones](https://github.com/stewones) |[venkatramachandran](https://github.com/venkatramachandran) |[rolaveric](https://github.com/rolaveric) |
+
+## License
+`angular-morris-chart` is open-sourced software licensed under [MIT](http://opensource.org/licenses/MIT), maintained by [@stewones](https://github.com/stewones). Feel free to open an issue or make a PR.
