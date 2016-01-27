@@ -4,10 +4,13 @@ A module with directives to easy use of [morris](http://morrisjs.github.io/morri
 ## Installation
 Install `angular-morris-chart` through
 
-#### Bower/NPM
-```shell
+#### Bower
+```
 $ bower install angular-morris-chart --save
-or
+```
+
+#### Npm
+```
 $ npm install angular-morris-chart --save
 ```
 
