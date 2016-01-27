@@ -25,7 +25,22 @@ Full version:
 [https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.js](https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.js)
 
 <br />
-Then add `angular.morris-chart` as a module dependency for your angular app
+
+## Add morris.js and its dependencies
+jQuery & Raphaël to your page
+
+```
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+```
+## Add our module
+```
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.min.js"></script>
+```
+
+## Inject dependency
+Make sure you injected `angular.morris-chart` into your angular app
 
 ```js
 angular.module('my.app', [
@@ -42,13 +57,18 @@ There are four directives based on `morris.js`
 - `donut-chart`
 - `area-chart`
 
-Checkout [documentation](https://angular-morris-chart.stpa.co) for live examples
+[Working fiddle](https://jsfiddle.net/stewones/n6aaLckb/) sample
+
+Checkout [our documentation](https://angular-morris-chart.stpa.co) for others examples
+
 
 ---
 **Notes:**
 
 - To contribute just read [this file](https://github.com/stewones/angular-morris-chart/blob/master/CONTRIBUTING.md) before
 - Verify the changes in [changelog](https://github.com/stewones/angular-morris-chart/releases)
+- Look [Morris documentation](http://morrisjs.github.io/morris.js/) to check api
+
 
 ## Contributors
 
