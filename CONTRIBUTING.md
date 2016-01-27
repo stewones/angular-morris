@@ -58,7 +58,7 @@ $ gulp test:auto
 
 
 #### Docs site
-To update the docs is necessary to issue all commands located in `bin` folder. At this momment is possible only by windows (.bat). If you use linux, please PR with new .sh files. 
+To update the docs is necessary to issue all commands located in `bin` folder. At this moment is only possible by windows (.bat), but if you work with linux please PR with new .sh files. 
 Then PR on `gh-pages` from `.build` folder.
 
 #### Before send your PR
