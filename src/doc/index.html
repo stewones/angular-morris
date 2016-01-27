@@ -102,6 +102,17 @@
                             </div>
                         </li>
                         <li>
+                            <hr />
+                        </li>
+                        <li>
+                            <div class="feed">
+                                <h4>Last of blog:</h4>
+                                <ul ng-cloak>
+                                    <li ng-repeat="item in feed"><a ng-href="{{item.link}}">{{item.title}}</a></li>
+                                </ul>                                
+                            </div>
+                        </li>
+                        <li>
                             <br />
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <!-- angular-morris-chart -->

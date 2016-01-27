@@ -24,26 +24,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
- (function() {
-     /**
-      * Example App
-      * @author Stewan P. <talk@stpa.co>
-      */
-     'use strict';
+(function () {
+    /**
+     * Example App
+     * @author Stewan P. <talk@stpa.co>
+     */
+    'use strict';
 
-     angular.module('angular-morris-chart', [
-         'angular.morris-chart'
-     ])
-         .controller('MorrisCtrl', ['$timeout', MorrisCtrl]);
+    angular.module('angular-morris-chart', [
+        'angular.morris-chart'
+    ])
+        .controller('MorrisCtrl', ['$timeout', '$http', '$scope', MorrisCtrl]);
 
-     function MorrisCtrl($timeout) {
-         $timeout(function() {
-             // highlight snippet
-             if (window.hljs) {
-                 $('pre code').each(function(i, block) {
-                     window.hljs.highlightBlock(block);
-                 });
-             }
-         }, 1000);
-     }
- })();
+    function MorrisCtrl($timeout, $http, $scope) {
+        $timeout(function () {
+            // highlight snippet
+            if (window.hljs) {
+                $('pre code').each(function (i, block) {
+                    window.hljs.highlightBlock(block);
+                });
+            }
+        }, 1000);
+
+        var url = 'http://stpa.co/feed.xml';
+        $http.jsonp('//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=6&callback=JSON_CALLBACK&q=' + encodeURIComponent(url)).then(function (response) {
+            if (response && response.data && response.data.responseData && response.data.responseData.feed && response.data.responseData.feed.entries.length) {
+                $scope.feed = response.data.responseData.feed.entries;
+            }
+        });
+    }
+})();
