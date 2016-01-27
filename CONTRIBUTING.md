@@ -2,11 +2,11 @@
 
 ### Overview
 
-. Open an issue
-. Make a new branch with the name of your new feature
-. Add the tests for your new feature
-. Issue `gulp test` and if ok run `gulp build` before commit
-. Make your pull request
+1. Open an issue
+2. Make a new branch with the name of your new feature
+3. Add the tests for your new feature
+4. Issue `gulp test` and if ok run `gulp build` before commit
+5. Make your pull request
 
 Try to make micro commits in format `feat(type): description` for easy understanding of what you are doing.
 
