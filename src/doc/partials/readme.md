@@ -1,50 +1,37 @@
 ## angular-morris-chart [![Build Status](https://travis-ci.org/stewones/angular-morris-chart.svg)](https://travis-ci.org/stewones/angular-morris-chart)
+A module with directives to easy use of [morris](http://morrisjs.github.io/morris.js/) with angular 
 
-### Installation
+## Installation
+Install `angular-morris-chart` through
 
-install `angular-morris-chart` by bower or npm running the following command
+#### Bower/NPM
 ```shell
 $ bower install angular-morris-chart --save
 or
 $ npm install angular-morris-chart --save
 ```
 
-or download [here](https://raw.githubusercontent.com/stewones/angular-morris-chart/master/src/angular-morris-chart.min.js)
+#### Download
+[From master branch](https://raw.githubusercontent.com/stewones/angular-morris-chart/master/src/angular-morris-chart.min.js)
 
-then append `angular-morris-chart.min.js` in to end of body, before your project, after the `angular` and the other libs.
+#### CDN
+Minified version:
+[https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.min.js](https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.min.js)
 
+Full version:
+[https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.js](https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.js)
 
-```html
-<!--using bower-->
-...
-...
-<script src="../bower_components/angular-morris-chart/src/angular-morris-chart.min.js"></script>
-...
-...
-</body>
-</html>
-```
+<br />
+Then add `angular.morris-chart` as a module dependency for your angular app
 
-
-```html
-<!--using npm-->
-...
-...
-<script src="../node_modules/angular-morris-chart/src/angular-morris-chart.min.js"></script>
-...
-...
-</body>
-</html>
-```
-
-add `angular.morris-chart` as a module dependency for your app
 ```js
 angular.module('my.app', [
     'angular.morris-chart'
 ])
 ```
 
-### Usage
+
+## Usage
 There are four directives based on `morris.js`
 
 - `bar-chart`
@@ -52,64 +39,13 @@ There are four directives based on `morris.js`
 - `donut-chart`
 - `area-chart`
 
-Check out [documentation](https://angular-morris-chart.stpa.co) for live examples
-
-### Development
-
-- install node and bower on your environment
-
-cd to your desired folder and clone `angular-morris-chart` repository
-```sh
-$ git clone https://github.com/stewones/angular-morris-chart
-$ cd angular-morris-chart
-```
-
-install all project dependencies
-```sh
-$ npm install
-$ bower install
-```
-
-serve lib/docs with live reload
-```sh
-#this serves docs on `http://localhost:3000` with live reload
-$ gulp serve
-```
-
-serve lib/docs on distribution mode
-```sh
-#same above but with minified sources for distribution
-$ gulp serve:dist
-```
-
-build all to distribution
-```sh
-#this generates minified src at `src/angular-morris-chart.min.js`, and docs on `dist/doc` folder.
-$ gulp build
-```
-
-serve tests
-```sh
-#run unit test with karma
-$ gulp test
-```
-
-serve automated tests
-```sh
-#unit test with live reload
-$ gulp test:auto
-```
+Checkout [documentation](https://angular-morris-chart.stpa.co) for live examples
 
 ---
 **Notes:**
 
-- To contribute with this awesome project, just open an issue, then fork the project and make a new branch to do your work.
-
-- Run `gulp build` before make your PR. 
-
-- To update docs site, just make another PR on `gh-pages` branch with only content generated in `dist/doc`. Please make sure that all tests are passing by `gulp test`. Verify all the tasks located on gulp folder for more details.
-
-- [Changelog](https://github.com/stewones/angular-morris-chart/releases)
+- To contribute just read [this file](https://github.com/stewones/angular-morris-chart/blob/master/CONTRIBUTING.md) before
+- Verify the changes in [changelog](https://github.com/stewones/angular-morris-chart/releases)
 
 ## Contributors
 
