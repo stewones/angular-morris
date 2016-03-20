@@ -59,7 +59,23 @@ There are four directives based on `morris.js`
 
 [Working fiddle](https://jsfiddle.net/stewones/n6aaLckb/) sample
 
-Checkout [our documentation](https://angular-morris-chart.stpa.co) for others examples
+## How-to´s
+
+- Usage of dataFormat with line charts #45
+https://jsfiddle.net/stewones/q8mcqm8k/
+
+- $scope issues related #42
+https://jsfiddle.net/stewones/0qqs6rhb/
+
+- Working with async calls
+https://jsfiddle.net/stewones/xtuso6q8/
+
+- Usage of goalLineColors
+https://jsfiddle.net/stewones/9zjasq3r/
+
+- Usage of postUnits 
+https://jsfiddle.net/stewones/n6aaLckb/
+
 
 
 ---
