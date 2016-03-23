@@ -30,7 +30,7 @@
     angular.module("angular.morris-chart").directive('donutChart', /*@ngInject*/function(morrisChartService) {
         // List of known option keys for donutChart according to morris.js docs:
         // http://morrisjs.github.io/morris.js/donuts.html
-        var OPTION_KEYS = ['data', 'colors', 'formatter', 'resize'];
+        var OPTION_KEYS = ['data', 'colors', 'formatter', 'resize', 'backgroundColor', 'labelColor'];
 
         return {
             restrict: 'A',
