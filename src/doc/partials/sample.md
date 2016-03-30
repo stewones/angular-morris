@@ -56,6 +56,8 @@ donut-data='[
     {label: "In-Store Sales",value: 30},
     {label: "Mail-Order Sales", value: 20}
 ]'
+donut-label-color='"#000000"' 
+donut-background-color='"#ffffff"' 
 donut-colors='["#31C0BE","#c7254e","#98a0d3"]'
 donut-formatter='"currency"'>
 </div>
@@ -69,6 +71,8 @@ donut-data='[
     {label: "Mail-Order Sales", value: 20}
 ]'
 donut-colors='["#31C0BE","#c7254e","#98a0d3"]'
+donut-label-color='"#000000"' 
+donut-background-color='"#ffffff"' 
 donut-formatter='"currency"'>
 </div>
 
