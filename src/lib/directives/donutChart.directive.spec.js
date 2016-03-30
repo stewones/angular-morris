@@ -32,7 +32,9 @@ describe('Component <donutChart> directive', function() {
         $rootScope,
         element,
         data,
-        colors;
+        colors,
+        backgroundColor,
+        labelColor;
     beforeEach(module('angular.morris-chart'));
     beforeEach(inject(function(_$compile_, _$rootScope_) {
         $compile = _$compile_;
@@ -40,6 +42,8 @@ describe('Component <donutChart> directive', function() {
         scope = _$rootScope_.$new();
         data = '[{"label": "Download Sales", "value": 12},{"label": "In-Store Sales","value": 30},{"label": "Mail-Order Sales", "value": 20}]';
         colors = '["#515fb4","#7580c3","#98a0d3"]';
+        backgroundColor = '"#ffffff"';
+        labelColor = '"#000000"';
         scope.myFormatter = function(input) {
             return '$' + input;
         };
@@ -78,5 +82,17 @@ describe('Component <donutChart> directive', function() {
             formatter: jasmine.any(Function)
         });
         expect(Morris.Donut.calls.argsFor(0)[0].formatter('25')).toBe('$25.00');
+    });
+
+    it('Optionally supports backgroundColor and labelColor', function() {
+        element = $compile("<div donut-chart donut-data='" + data + "' donut-colors='" + colors + "' donut-label-color='" + labelColor + "'  donut-background-color='" + backgroundColor + "'></div>")(scope);
+        $rootScope.$digest();
+        expect(Morris.Donut).toHaveBeenCalledWith({
+            element: jasmine.any(Object),
+            data: JSON.parse(data),
+            colors: JSON.parse(colors),
+            backgroundColor:  JSON.parse(backgroundColor),
+            labelColor:  JSON.parse(labelColor)
+        });
     });
 });
