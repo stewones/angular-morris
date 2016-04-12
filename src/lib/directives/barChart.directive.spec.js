@@ -50,8 +50,16 @@ describe('Component <barChart> directive', function() {
         colors = '["#515fb4","#7580c3","#98a0d3"]';
         stacked = false;
         resize = false;
+        scope.ylFormat = function(y) {
+           return '$' + y;
+        };
         spyOn(Morris, 'Bar');
-        element = $compile("<div bar-chart bar-data='" + data + "' bar-x='" + xkey + "' bar-y='" + ykeys + "' bar-labels='" + labels + "' bar-colors='" + colors + "' bar-stacked='" + stacked + "' bar-resize='" + resize + "'></div>")(scope);
+        element = $compile(
+            "<div bar-chart bar-data='" + data + "' bar-x='" + xkey + "' bar-y='" + ykeys +
+            "' bar-labels='" + labels + "' bar-colors='" + colors + "' bar-stacked='" + stacked +
+            "' bar-y-label-format='ylFormat'" +
+            "' bar-resize='" + resize + "' bar-x-label-angle='\"90\"'></div>"
+        )(scope);
         $rootScope.$digest();
     }));
 
@@ -65,6 +73,8 @@ describe('Component <barChart> directive', function() {
             barColors: JSON.parse(colors),
             stacked: JSON.parse(stacked),
             resize: JSON.parse(resize),
+            xLabelAngle: '90',
+            yLabelFormat: jasmine.any(Function),
             xLabelMargin: 2
         });
     });

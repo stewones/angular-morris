@@ -208,7 +208,12 @@
         var OPTION_KEYS = [
             'data', 'xkey', 'ykeys', 'labels', 'barColors', 'stacked', 'hideHover',
             'hoverCallback', 'axes', 'grid', 'gridTextColor', 'gridTextSize', 'gridTextFamily',
-            'gridTextWeight', 'resize'
+            'gridTextWeight', 'resize',
+            // In spite of being missing in the documentation, these do exist
+            // They are part of the base grid: https://github.com/morrisjs/morris.js/blob/master/lib/morris.grid.coffee
+            'ymax', 'ymin', 'goals', 'goalStrokeWidth',
+            'goalLineColors', 'yLabelAlign', 'parseTime', 'postUnits', 'preUnits',
+            'xLabelAngle', 'yLabelFormat', 'events', 'eventStrokeWidth', 'eventLineColors'
         ];
 
         return {
