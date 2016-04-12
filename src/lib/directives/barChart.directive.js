@@ -36,11 +36,9 @@
             'gridTextWeight', 'resize',
             // In spite of being missing in the documentation, these do exist
             // They are part of the base grid: https://github.com/morrisjs/morris.js/blob/master/lib/morris.grid.coffee
-            'hideHover', 'ymax', 'ymin', 'goals', 'goalStrokeWidth',
+            'ymax', 'ymin', 'goals', 'goalStrokeWidth',
             'goalLineColors', 'yLabelAlign', 'parseTime', 'postUnits', 'preUnits',
-            'xLabelAngle', 'yLabelFormat', 'goals', 'goalStrokeWidth',
-            'goalLineColors', 'events', 'eventStrokeWidth', 'eventLineColors',
-            'axes', 'grid', 'gridTextColor', 'gridTextSize', 'gridTextFamily', 'gridTextWeight'
+            'xLabelAngle', 'yLabelFormat', 'events', 'eventStrokeWidth', 'eventLineColors'
         ];
 
         return {
