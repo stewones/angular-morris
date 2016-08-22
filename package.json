@@ -1,6 +1,6 @@
 {
     "name": "angular-morris",
-    "private": true,
+    "private": false,
     "version": "1.3.0",
     "description": "Angular.js module wrapper for Morris.js",
     "homepage": "https://angular-morris.io",
@@ -20,5 +20,9 @@
     "engines": {
         "node": ">=0.10.0"
     },
-    "tags": []
+    "tags": [
+        "angular.js",
+        "morris.js",
+        "charts"
+    ]
 }
