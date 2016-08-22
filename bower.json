@@ -1,21 +1,21 @@
 {
-  "name": "angular-morris-chart",
-  "main": "src/angular-morris-chart.min.js",
-  "version": "1.2.0",
+  "name": "angular-morris",
+  "main": "build/module/angular-morris/angular-morris.min.js",
+  "version": "1.3.0",
   "authors": [
-    "Stewan Pacheco <talk@stpa.co>"
+    "Stewan Pacheco <hi@st1s.io>"
   ],
-  "description": "Wrapper of morris.js for AngularJS",
+  "description": "Easy use of morris.js with angular.js",
   "keywords": [
     "angular",
     "morris",
     "chart"
   ],
   "license": "MIT",
-  "homepage": "https://angular-morris-chart.stpa.co",
+  "homepage": "https://angular-morris.io",
   "private": false,
   "dependencies": {
-    "angular": "1.3.x",
+    "angular": "1.5.x",
     "morris.js": "0.5.x"
   },
   "devDependencies": {

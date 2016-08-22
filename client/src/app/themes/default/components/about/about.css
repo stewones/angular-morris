@@ -1,0 +1,25 @@
+.about img {
+    max-width: 210px;
+    max-height: 210px;
+    padding: 10px;
+}
+
+.about .column {
+    margin-bottom: 100px;
+}
+
+.about .column p {
+    max-width: 280px;
+    margin: 0 auto;
+}
+
+.about .cli img {
+    max-width: 375px;
+    max-height: 135px;
+}
+
+.about h4 {
+    margin-top: 20px;
+}
+
+@media (max-width: 769px) {}

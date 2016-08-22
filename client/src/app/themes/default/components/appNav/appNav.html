@@ -1,0 +1,64 @@
+<header class="app-nav nav">
+
+  <div class="nav-left">
+    <a class="nav-item logo" ui-sref="app.home">
+      <img src="/assets/images/angular-morris-logo.svg" alt="Logo">
+    </a>
+  </div>
+  
+  <span class="nav-toggle" ng-click="$ctrl.showNav=!$ctrl.showNav">
+          <span></span>
+  <span></span>
+  <span></span>
+  </span>
+  <div class="nav-right nav-menu" ng-class="{'show-nav':$ctrl.showNav}">
+    <a class="nav-item is-active" ui-sref="app.home">
+            Home
+          </a>
+    <a class="nav-item" ui-sref="app.wiki-Examples">
+            Examples
+          </a>
+    <!--<a class="nav-item" ui-sref="app.wiki">
+            Documentation
+          </a>-->
+
+    <span class="nav-item">
+            <a class="button is-info is-inverted" href="https://github.com/st1s/angular-morris/releases">
+              <span class="icon">
+                <i class="fa fa-github"></i>
+              </span>
+    <span>Download</span>
+    </a>
+    </span>
+
+    <span class="nav-item">
+      <a class="button" href="https://twitter.com/intent/tweet?text={{$ctrl.page().title()}}+{{$ctrl.location().href}}&source=angular-morris.io&related=angular-morris.io">
+        <span class="icon">
+          <i class="fa fa-twitter"></i>
+        </span>
+    <span>Tweet</span>
+    </a>
+    </span>
+
+
+  </div>
+    <style>
+        .app-nav {
+            height: 88px
+        }
+        
+        .app-nav.nav .nav-toggle {
+            margin-top: 20px;
+        }
+        
+       
+        @media screen and (max-width: 768px) {
+            .app-nav .nav-menu.show-nav {
+                display: block;
+            }
+            .app-nav .nav-menu a.nav-item {
+                padding-left: 16px;
+            }
+        }
+    </style>
+</header>

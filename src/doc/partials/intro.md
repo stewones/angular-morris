@@ -1,1 +1,0 @@
-Directives of `morris.js` for angular 1.x

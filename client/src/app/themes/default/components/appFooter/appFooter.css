@@ -1,0 +1,34 @@
+.app-footer {
+    margin: 0;
+    padding: 80px 20px 60px;
+}
+
+.app-footer p {
+    margin: 0;
+}
+
+.app-footer ul {
+    margin: 14px 5px !important;
+}
+
+.app-footer ul li {
+    list-style-type: none;
+}
+
+.app-footer a {
+    border-bottom: 1px dashed #ccc;
+    display: inline;
+    padding: 0;
+}
+
+.app-footer .menu-list li {
+    display: inline;
+}
+
+.app-footer .menu-list li a {
+    margin: 10px;
+}
+
+.app-footer .copyright {
+    color: #bbb;
+}

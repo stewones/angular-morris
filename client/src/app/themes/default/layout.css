@@ -1,0 +1,146 @@
+html, body {
+    margin: 0;
+}
+
+h1.title {
+    padding: 0 20px;
+}
+.appfy {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+#appfy-error-page {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+#appfy-error-page a {
+    color: #999 !important;
+}
+
+#appfy-error-page a:hover {
+    color: #c33d3e !important
+}
+
+a {
+    /*color: #999 !important;*/
+    -o-transition: .5s !important;
+    -ms-transition: .5s !important;
+    -moz-transition: .5s !important;
+    -webkit-transition: .5s !important;
+    transition: .5s !important;
+}
+
+a:hover {
+    /*color: #c33d3e !important*/
+}
+
+.heart {
+    margin: 0 5px;
+    width: 8px;
+    height: 8px;
+    background-color: #0fb8ad;
+    position: relative;
+    display: inline-block;
+    animation: pulse .9s infinite alternate ease-in
+}
+
+.heart:before {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #1fc8db;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    content: ""
+}
+
+.heart:after {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #0fb8ad;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    content: ""
+}
+
+
+
+@-moz-keyframes pulse {
+    from {
+        transform: rotate(-135deg) scale(1)
+    }
+    to {
+        transform: rotate(-135deg) scale(1.2)
+    }
+}
+
+@-webkit-keyframes pulse {
+    from {
+        transform: rotate(-135deg) scale(1)
+    }
+    to {
+        transform: rotate(-135deg) scale(1.2)
+    }
+}
+
+@-o-keyframes pulse {
+    from {
+        transform: rotate(-135deg) scale(1)
+    }
+    to {
+        transform: rotate(-135deg) scale(1.2)
+    }
+}
+
+@keyframes pulse {
+    from {
+        transform: rotate(-135deg) scale(1)
+    }
+    to {
+        transform: rotate(-135deg) scale(1.2)
+    }
+}
+
+.animate-show {
+    opacity: 1;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+    transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+    line-height: 0;
+    opacity: 0;
+    margin: 20px;
+}
+
+@media screen and (min-width: 769px) {
+    .title + .subtitle {
+        margin-top: -10px;
+    }
+}
+
+@media (max-width: 360px) {  
+    img {
+        max-width: 290px !important;
+    }
+}
+
+
+md-dialog h2 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+md-dialog[aria-label="Password"] {
+    max-width: 260px;
+}
+
+md-dialog[aria-label="Confirmation"] {
+    max-width: 360px;
+}

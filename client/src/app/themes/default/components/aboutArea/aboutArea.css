@@ -1,0 +1,33 @@
+.about-area .hero, .about-area pre {
+    background: #333
+}
+
+.about-area code {
+    color: #ddd
+}
+
+.about-area h3 {
+    font-size: 30px;
+      margin-top: 0;
+}
+
+.about-area text {
+    fill: #eee !important;
+}
+
+
+.about-area .hljs-string , .about-area .hljs-title , .about-area .hljs-constant , .about-area .hljs-parent , .about-area .hljs-tag .hljs-value , .about-area .hljs-rule .hljs-value , .about-area .hljs-preprocessor , .about-area .hljs-pragma , .about-area .hljs-name, .haml .hljs-symbol, .ruby .hljs-symbol, .ruby .hljs-symbol .hljs-string , .about-area .hljs-template_tag, .django .hljs-variable, .smalltalk .hljs-class , .about-area .hljs-addition , .about-area .hljs-flow , .about-area .hljs-stream, .bash .hljs-variable, .pf .hljs-variable, .apache .hljs-tag, .apache .hljs-cbracket, .tex .hljs-command, .tex .hljs-special, .erlang_repl .hljs-function_or_atom, .asciidoc .hljs-header, .markdown .hljs-header, .coffeescript .hljs-attribute {
+    color: #FF7575;
+}
+
+.about-area .hljs , .about-area .about-area .hljs-subst , .about-area  .about-area .hljs-tag .hljs-title,.about-area  .nginx .hljs-title {
+    color: #eee;
+}
+
+
+
+/*@media (min-width: 1180px) {
+    .about-area .container {
+        max-width: 950px
+    }
+}*/

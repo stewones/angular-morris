@@ -1,0 +1,11 @@
+.app-nav .container {
+    max-width: 100%;
+}
+
+.app-nav .nav-left .logo {
+    width: 106px;
+}
+
+.app-nav .nav-left .logo img {
+    max-height: 72px;
+}

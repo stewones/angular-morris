@@ -1,0 +1,83 @@
+<p>Add <code>angular.morris</code> as module dependency for your project then use it</p>
+<pre><code class="lang-js">angular.module(&#39;my.app&#39;, [
+    &#39;angular.morris&#39;
+])
+</code></pre>
+<h2 id="bar-chart">Bar Chart</h2>
+<pre><code class="lang-html">&lt;div
+bar-chart 
+bar-data=&#39;[
+    { y: &quot;2006&quot;, a: 100, b: 90 },
+    { y: &quot;2007&quot;, a: 75,  b: 65 },
+    { y: &quot;2008&quot;, a: 50,  b: 40 },
+    { y: &quot;2009&quot;, a: 75,  b: 65 },
+    { y: &quot;2010&quot;, a: 50,  b: 40 },
+    { y: &quot;2011&quot;, a: 75,  b: 65 },
+    { y: &quot;2012&quot;, a: 100, b: 90 }
+]&#39;
+bar-x=&#39;y&#39;
+bar-y=&#39;[&quot;a&quot;, &quot;b&quot;]&#39;
+bar-labels=&#39;[&quot;Series A&quot;, &quot;Series B&quot;]&#39;
+bar-colors=&#39;[&quot;#31C0BE&quot;, &quot;#c7254e&quot;]&#39;&gt;
+&lt;/div&gt;
+</code></pre>
+<iframe width="100%" height="300" src="//jsfiddle.net/st1s/m2y6grao/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h2 id="donut-chart">Donut Chart</h2>
+<pre><code class="lang-html">&lt;div
+donut-chart
+donut-data=&#39;[
+    {label: &quot;Download Sales&quot;, value: 12},
+    {label: &quot;In-Store Sales&quot;,value: 30},
+    {label: &quot;Mail-Order Sales&quot;, value: 20}
+]&#39;
+donut-label-color=&#39;&quot;#000000&quot;&#39; 
+donut-background-color=&#39;&quot;#ffffff&quot;&#39; 
+donut-colors=&#39;[&quot;#31C0BE&quot;,&quot;#c7254e&quot;,&quot;#98a0d3&quot;]&#39;
+donut-formatter=&#39;&quot;currency&quot;&#39;&gt;
+&lt;/div&gt;
+</code></pre>
+<p class="text-center"><code>donut-formatter</code> can either be a string for a filter name (eg. &#39;currency&#39;) or a reference to a scope function. <a href="http://plnkr.co/edit/AsxnDG?p=preview">example in plunker</a></p>
+
+<iframe width="100%" height="300" src="//jsfiddle.net/st1s/m2y6grao/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+
+<h2 id="line-chart">Line Chart</h2>
+<pre><code class="lang-html">&lt;div
+line-chart
+line-data=&#39;[
+    { y: &quot;2006&quot;, a: 100, b: 90 },
+    { y: &quot;2007&quot;, a: 75,  b: 65 },
+    { y: &quot;2008&quot;, a: 50,  b: 40 },
+    { y: &quot;2009&quot;, a: 75,  b: 65 },
+    { y: &quot;2010&quot;, a: 50,  b: 40 },
+    { y: &quot;2011&quot;, a: 75,  b: 65 },
+    { y: &quot;2012&quot;, a: 100, b: 90 }
+]&#39;
+line-xkey=&#39;y&#39;
+line-ykeys=&#39;[&quot;a&quot;, &quot;b&quot;]&#39;
+line-labels=&#39;[&quot;Serie A&quot;, &quot;Serie B&quot;]&#39;
+line-colors=&#39;[&quot;#31C0BE&quot;, &quot;#c7254e&quot;]&#39;&gt;
+&lt;/div&gt;
+</code></pre>
+<iframe width="100%" height="300" src="//jsfiddle.net/st1s/zcr49umr/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h2 id="area-chart">Area Chart</h2>
+<pre><code class="lang-html">&lt;div
+area-chart
+area-data=&#39;[
+    { y: &quot;2006&quot;, a: 100, b: 90 },
+    { y: &quot;2007&quot;, a: 75,  b: 65 },
+    { y: &quot;2008&quot;, a: 50,  b: 40 },
+    { y: &quot;2009&quot;, a: 75,  b: 65 },
+    { y: &quot;2010&quot;, a: 50,  b: 40 },
+    { y: &quot;2011&quot;, a: 75,  b: 65 },
+    { y: &quot;2012&quot;, a: 100, b: 90 }
+  ]&#39;
+area-xkey=&#39;y&#39;
+area-ykeys=&#39;[&quot;a&quot;, &quot;b&quot;]&#39;
+area-labels=&#39;[&quot;Serie A&quot;, &quot;Serie B&quot;]&#39;
+line-colors=&#39;[&quot;#31C0BE&quot;, &quot;#c7254e&quot;]&#39;&gt;
+&lt;/div&gt;
+</code></pre>
+<iframe width="100%" height="300" src="//jsfiddle.net/st1s/b4gb2mny/embedded/result,js,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>

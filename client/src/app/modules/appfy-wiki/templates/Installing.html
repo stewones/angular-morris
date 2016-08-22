@@ -1,0 +1,30 @@
+<h3 id="requirement">Requirement</h3>
+<ul>
+<li>jQuery </li>
+<li>Raphaël</li>
+<li>Morris</li>
+</ul>
+<h3 id="bower">Bower</h3>
+<pre><code>$ bower install angular-morris-chart --save
+</code></pre><h3 id="npm">Npm</h3>
+<pre><code>$ npm install angular-morris-chart --save
+</code></pre><h3 id="download">Download</h3>
+<p><a href="https://raw.githubusercontent.com/st1s/angular-morris-chart/master/src/build/module/angular-morris/angular-morris.min.js">minified from master branch</a></p>
+<p><a href="https://raw.githubusercontent.com/st1s/angular-morris-chart/master/src/build/module/angular-morris/angular-morris.js">full from master branch</a></p>
+<h3 id="cdn-1-2-version">CDN 1.2 version</h3>
+<p>Minified version:
+<a href="https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.min.js">https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.min.js</a></p>
+<p>Full version:
+<a href="https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.js">https://cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.js</a></p>
+<h2 id="add-morris-and-it-dependencies-to-your-page">Add morris and it dependencies to your page</h2>
+<pre><code>&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><h2 id="add-our-module">Add our module</h2>
+<pre><code>&lt;script src=&quot;//cdnjs.cloudflare.com/ajax/libs/angular-morris-chart/1.2.0/angular-morris-chart.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><h2 id="inject-dependency">Inject dependency</h2>
+<p>Make sure you injected <code>angular.morris</code> into your angular project</p>
+<pre><code class="lang-js">angular.module(&#39;my.app&#39;, [
+    &#39;angular.morris&#39;
+])
+</code></pre>

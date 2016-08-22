@@ -1,0 +1,33 @@
+.about-donut .hero, .about-donut pre {
+    background: #333
+}
+
+.about-donut code {
+    color: #ddd
+}
+
+.about-donut h3 {
+    font-size: 30px;
+      margin-top: 30px;
+}
+
+.about-donut text {
+    fill: #eee !important;
+}
+
+
+.about-donut .hljs-string , .about-donut .hljs-title , .about-donut .hljs-constant , .about-donut .hljs-parent , .about-donut .hljs-tag .hljs-value , .about-donut .hljs-rule .hljs-value , .about-donut .hljs-preprocessor , .about-donut .hljs-pragma , .about-donut .hljs-name, .haml .hljs-symbol, .ruby .hljs-symbol, .ruby .hljs-symbol .hljs-string , .about-donut .hljs-template_tag, .django .hljs-variable, .smalltalk .hljs-class , .about-donut .hljs-addition , .about-donut .hljs-flow , .about-donut .hljs-stream, .bash .hljs-variable, .pf .hljs-variable, .apache .hljs-tag, .apache .hljs-cbracket, .tex .hljs-command, .tex .hljs-special, .erlang_repl .hljs-function_or_atom, .asciidoc .hljs-header, .markdown .hljs-header, .coffeescript .hljs-attribute {
+    color: #FF7575;
+}
+
+.about-donut .hljs , .about-donut .about-donut .hljs-subst , .about-donut  .about-donut .hljs-tag .hljs-title,.about-donut  .nginx .hljs-title {
+    color: #eee;
+}
+
+
+
+/*@media (min-width: 1180px) {
+    .about-donut .container {
+        max-width: 950px
+    }
+}*/

@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js" ng-app="<%= slug %>" ng-controller="$AppCtrl as $app">
+
+<head>
+    <base href="/" />
+    <meta charset="utf-8">
+    <title>
+        <%= title %>
+    </title>
+    <meta name="fragment" content="!">
+    <meta name="description" content="<%= description %>">
+    <meta name="keywords" content="<%= keywords %>">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- og -->
+    <meta content="<%= ogLocale %>" property="og:locale" />
+    <meta content="<%= ogSiteName %>" property="og:site_name">
+    <meta content="<%= ogTitle %>" property="og:title">
+    <meta content="<%= ogDescription %>" property="og:description">
+    <meta content="<%= ogUrl %>" property="og:url">
+    <meta content="<%= ogImage %>" property="og:image">
+    <meta content="<%= articleSection %>" property="article:section">
+    <meta content="<%= articleTag %>" property="article:tag">
+    <!-- /og -->
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="icon" type="image/png" href="<%= icon %>">
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- render -->
+    <!-- /render -->
+</head>
+
+<body>
+    <!-- LOADER -->
+    <section id="loader" class="animate-show" ng-hide="!$app.page()._busy">
+        <div class="flex-container">
+            <img class="logo" src="/assets/images/angular-morris-logo.svg">
+            <img class="load" src="/assets/images/load.gif">
+        </div>
+        <style>
+            #loader {
+                background: #fff;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100%;
+                flex-direction: column;
+                /* Fallback for browsers do NOT support vh unit */
+                min-height: 100vh;
+                /* These two lines are counted as one :-)       */
+            }
+            
+            #loader a {
+                font-size: 17px;
+                text-decoration: none;
+            }
+            
+            #loader img.load {
+                width: 64px;
+                margin: 20px auto;
+            }
+            
+            #loader img.logo {
+                width: 100%;
+                max-width: 280px;
+                max-width: 280px;
+                margin: 0px auto;
+            }
+            
+            #loader .flex-container {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                -ms-box-orient: vertical;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -moz-flex;
+                display: -webkit-flex;
+                display: flex;
+                flex-direction: column;
+            }
+        </style>
+    </section>
+    <!-- /LOADER -->
+    <!--[if lt IE 10]>
+            <p class="browsehappy">
+                You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">update now</a>.
+            </p>
+        <![endif]-->
+    <ui-view name="app"></ui-view>
+    <!--social-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://buttons.github.io/buttons.js" async defer id="github-bjs"></script>
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    </script>
+    <!--/social-->
+    <!-- Injection -->
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!-- /Injection -->
+</body>
+
+</html>

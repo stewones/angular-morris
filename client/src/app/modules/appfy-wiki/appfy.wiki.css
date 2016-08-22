@@ -1,0 +1,7 @@
+.wiki-content .hljs-string , .wiki-content .hljs-title , .wiki-content .hljs-constant , .wiki-content .hljs-parent , .wiki-content .hljs-tag .hljs-value , .wiki-content .hljs-rule .hljs-value , .wiki-content .hljs-preprocessor , .wiki-content .hljs-pragma , .wiki-content .hljs-name, .haml .hljs-symbol, .ruby .hljs-symbol, .ruby .hljs-symbol .hljs-string , .wiki-content .hljs-template_tag, .django .hljs-variable, .smalltalk .hljs-class , .wiki-content .hljs-addition , .wiki-content .hljs-flow , .wiki-content .hljs-stream, .bash .hljs-variable, .pf .hljs-variable, .apache .hljs-tag, .apache .hljs-cbracket, .tex .hljs-command, .tex .hljs-special, .erlang_repl .hljs-function_or_atom, .asciidoc .hljs-header, .markdown .hljs-header, .coffeescript .hljs-attribute {
+    color: #FF7575;
+}
+
+.wiki-content .hljs , .wiki-content .wiki-content .hljs-subst , .wiki-content  .wiki-content .hljs-tag .hljs-title,.wiki-content  .nginx .hljs-title {
+    color: #eee;
+}
