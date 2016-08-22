@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <!-- LOADER -->  
+    <!-- LOADER -->
     <section id="loader" class="animate-show" ng-show="$app.page()._busy">
         <div class="flex-container">
             <img class="logo" src="/assets/images/angular-morris-logo.svg">
@@ -104,13 +104,6 @@
             </p>
         <![endif]-->
     <ui-view name="app"></ui-view>
-    <!--social-->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <script src="https://buttons.github.io/buttons.js" async defer id="github-bjs"></script>
-    <script>
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-    </script>
-    <!--/social-->
     <!-- Injection -->
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
@@ -126,6 +119,15 @@
     <!-- endinject -->
     <!-- endbuild -->
     <!-- /Injection -->
+
+
+    <!--social-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://buttons.github.io/buttons.js" async defer id="github-bjs"></script>
+    <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+    </script>
+    <!--/social-->
 </body>
 
 </html>
