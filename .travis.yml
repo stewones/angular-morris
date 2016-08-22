@@ -5,6 +5,6 @@ node_js:
   - "0.11"
   - "0.10"
 before_script:
-  - npm install -g gulp
   - npm install -g bower
-script: npm install -g bower && npm install && npm test
+  - npm install -g gulp
+script: npm install && npm test
