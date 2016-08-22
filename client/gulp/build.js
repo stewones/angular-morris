@@ -32,7 +32,12 @@ var gulp = require('gulp');
 var conf = require('./conf');
 var gulpif = require('gulp-if');
 var template = require('gulp-template');
-var AppfySetting = require('../../appfy.json').client.setting;
+
+try {
+  var AppfySetting = require('../../appfy.json').client.setting;
+} catch (e) {
+  var AppfySetting = { slug: 'appfy-app' }
+}
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
