@@ -40,7 +40,7 @@
 
 <body>
     <!-- LOADER -->
-    <section id="loader" class="animate-show" ng-show="$app.page()._busy">
+    <section id="loader" class="animate-show" ng-hide="!$app.page()._busy">
         <div class="flex-container">
             <img class="logo" src="/assets/images/angular-morris-logo.svg">
             <img class="load" src="/assets/images/load.gif">

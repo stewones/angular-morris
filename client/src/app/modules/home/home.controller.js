@@ -8,7 +8,11 @@
     **/
     angular.module('home').controller('HomeCtrl', /*@ngInject*/ function ($page, $state, $timeout, lodash, setting) {
         var vm = this, _ = lodash;
-        
+
+        vm.setting = function () {
+            return setting;
+        }
+
         //apply the SEO
         $page.applySEO();
 
