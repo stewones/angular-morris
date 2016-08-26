@@ -15,6 +15,7 @@
         // Load 3rd party below
         // like bootstrap, material, etc
         //
-        'appfy.error'
+        'appfy.error',
+        '720kb.socialshare'
     ]);
 })();

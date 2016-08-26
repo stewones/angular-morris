@@ -7,7 +7,8 @@
     "appfy-error": "latest",
     "morris.js": "0.5.x",
     "highlightjs": "~8.5.0",
-    "appfy-wiki": "*"
+    "appfy-wiki": "*",
+    "angular-socialshare": "angularjs-socialshare#^2.2.5"
   },
   "devDependencies": {
     "moment": "~2.8.4",

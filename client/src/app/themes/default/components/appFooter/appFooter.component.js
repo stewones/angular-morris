@@ -9,8 +9,11 @@
             ngModel: '='
         },
         templateUrl: "app/themes/default/components/appFooter/appFooter.html",
-        controller: /*@ngInject*/ function ($scope, $timeout) {
+        controller: /*@ngInject*/ function ($scope, $timeout, setting) {
             var vm = this;
+            vm.setting = function () {
+                return setting;
+            }
             $timeout(function () {
                 vm.showFooter = true;
             }, 2500);
