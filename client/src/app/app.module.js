@@ -16,6 +16,8 @@
         // like bootstrap, material, etc
         //
         'appfy.error',
-        '720kb.socialshare'
+        '720kb.socialshare',
+        'angulartics',
+        'angulartics.google.analytics'
     ]);
 })();
