@@ -9,7 +9,7 @@
         "serve": "appfy serve",
         "serve:dist": "appfy serve --dist",
         "install": "cd client && npm install && bower install",
-        "build": "appfy build client --heroku",
+        "build": "appfy build client --static",
         "build-module": "appfy module angular-morris -b"
     },
     "main": "build/module/angular-morris/angular-morris.min.js",
