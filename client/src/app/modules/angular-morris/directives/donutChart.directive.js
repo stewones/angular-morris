@@ -27,17 +27,17 @@
 
 "use strict";
 /* global Morris */
-(function() {
-    angular.module("angular.morris").directive('donutChart', /*@ngInject*/function(angularMorris) {
+(function () {
+    angular.module("angular.morris").directive('donutChart', /*@ngInject*/function (angularMorris) {
         // List of known option keys for donutChart according to morris.js docs:
         // http://morrisjs.github.io/morris.js/donuts.html
-        var OPTION_KEYS = ['data', 'colors', 'formatter', 'resize', 'backgroundColor', 'labelColor'];
+        var OPTION_KEYS = ['data', 'colors', 'formatter', 'resize', 'backgroundColor', 'labelColor', 'startIndex'];
 
         return {
             restrict: 'A',
             scope: angularMorris.populateScopeDefinition({}, 'donut', OPTION_KEYS),
-            link: function(scope, elem) {
-                scope.$watch('donutData', function() {
+            link: function (scope, elem) {
+                scope.$watch('donutData', function () {
                     if (scope.donutData) {
                         if (typeof scope.donutData === 'string')
                             scope.donutData = JSON.parse(scope.donutData);
@@ -58,6 +58,16 @@
                             scope.donutInstance = new Morris.Donut(options);
                         } else {
                             scope.donutInstance.setData(scope.donutData);
+                        }
+
+                        if (scope.donutStartIndex) {
+                            var indexToSelect = scope.donutStartIndex;
+                            if (angular.isFunction(indexToSelect)) {
+                                indexToSelect = indexToSelect(scope.donutData);
+                            }
+                            if (angular.isNumber(indexToSelect)) {
+                                scope.donutInstance.select((indexToSelect >= 0 ? indexToSelect : 0));
+                            }
                         }
                     }
                 })
