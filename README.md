@@ -4,9 +4,8 @@
 
 Easy use of morris.js with angular.js
 
-## Notes
-> `angular-morris-charts` is now deprecated. See the last changes in [1.3 version](https://github.com/st1s/angular-morris/releases/tag/1.3.0)
-
+## Current Status
+> `angular-morris` is now deprecated. I'm working with angular 2 and planning to support it again soon. Anyway you can use the current version as it is. Sorry but I'll not support the js version anymore.
 
 ## Installing
 Install `angular-morris` through bower or npm. Checkout [the docs](https://angular-morris.io/docs).
